@@ -1,6 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 
+/* =========================================================
+   GATHER 4:30 AFTER CARE
+========================================================= */
+
+.gather-box {
+
+  border:
+    2px dashed
+    #c0b2cf;
+
+  border-radius:9px;
+
+  padding:10px;
+
+  margin:8px;
+
+  background:#fcf9ff;
+
+  text-align:center;
+
+}
+
+
+.gather-title {
+
+  margin-bottom:8px;
+
+  color:var(--care-dark);
+
+  font-size:11px;
+
+  font-weight:bold;
+
+  text-transform:uppercase;
+
+  letter-spacing:.3px;
+
+}
+
+
+.gather-staff {
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+}
+
+
+.aftercare-staff {
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  padding:6px;
+
+}
+  
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,54 +216,23 @@ a {
    NAVIGATION
 ========================================================= */
 
-.nav {
+<nav class="nav">
 
-  display:flex;
-  flex-wrap:wrap;
+  <button
+    class="nav-button active"
+    data-view="home"
+  >
+    Home
+  </button>
 
-  gap:7px;
+  <button
+    class="nav-button"
+    data-view="schedules"
+  >
+    Schedules
+  </button>
 
-  margin-bottom:15px;
-
-}
-
-
-.nav-button {
-
-  border:1px solid #bfc7c1;
-
-  background:white;
-
-  color:var(--pine);
-
-  padding:8px 12px;
-
-  border-radius:8px;
-
-  cursor:pointer;
-
-  font-size:13px;
-  font-weight:bold;
-
-}
-
-
-.nav-button:hover {
-
-  background:var(--pine-light);
-
-}
-
-
-.nav-button.active {
-
-  background:var(--pine);
-  color:white;
-
-  border-color:var(--pine);
-
-}
-
+</nav>
 
 /* =========================================================
    VIEWS
@@ -614,6 +654,68 @@ select {
 
 }
 
+  <!-- ======================================================
+     SCHEDULES HOME
+====================================================== -->
+
+<section
+  id="schedules"
+  class="view"
+>
+
+  <div class="card">
+
+    <h2 class="section-title">
+      Schedules
+    </h2>
+
+    <div class="home-buttons">
+
+      <div
+        class="home-link"
+        onclick="showView('whole-school')"
+      >
+        <strong>Whole School Daily</strong>
+        <span>
+          View staffing across the entire school.
+        </span>
+      </div>
+
+      <div
+        class="home-link"
+        onclick="showView('classroom')"
+      >
+        <strong>Classroom Daily</strong>
+        <span>
+          View Spruce, Birch, Maple or Seedlings.
+        </span>
+      </div>
+
+      <div
+        class="home-link"
+        onclick="showView('daily')"
+      >
+        <strong>Individual Daily</strong>
+        <span>
+          View one staff member's schedule for the day.
+        </span>
+      </div>
+
+      <div
+        class="home-link"
+        onclick="showView('weekly')"
+      >
+        <strong>Individual Weekly</strong>
+        <span>
+          View one staff member's full week.
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 /* =========================================================
    WHOLE SCHOOL
@@ -2109,7 +2211,7 @@ const DAY_START =
 
 
 const DAY_END =
-  15 * 60 + 30;
+  15 * 60 + 45;
 
 
 const DAY_LENGTH =
@@ -2143,10 +2245,16 @@ const primaryActivities = [
   },
 
   {
-    name:"Afternoon Recess",
-    start:14*60+30,
-    end:15*60+30
-  }
+  name:"Afternoon Recess",
+  start:14*60+30,
+  end:15*60+30
+},
+
+{
+  name:"Gather 4:30 Kids",
+  start:15*60+30,
+  end:15*60+45
+}
 
 ];
 
@@ -3636,11 +3744,7 @@ function renderWholeSchool() {
   );
 
 
-  renderCare(
-    "primary-430",
-    "4:30 After Care",
-    day
-  );
+  renderPrimary430(day);
 
 
   renderCare(
@@ -4269,7 +4373,131 @@ async function loadSchedule() {
 
     populateStaffDropdowns();
 
+function renderPrimary430(day) {
 
+  const element =
+    document.getElementById(
+      "primary-430"
+    );
+
+  const gather =
+    getAssignments(
+      "Gather 4:30 After Care",
+      day
+    );
+
+  const afterCare =
+    getAssignments(
+      "4:30 After Care",
+      day
+    );
+
+
+  let html = "";
+
+
+  /* GATHER 4:30 KIDS */
+
+  if (gather.length) {
+
+    html +=
+      '<div class="gather-box">' +
+
+        '<div class="gather-title">' +
+          'Gather 4:30 After Care' +
+        '</div>' +
+
+        '<div class="gather-staff">';
+
+
+    gather.forEach(item => {
+
+      html +=
+        '<span class="care-person">' +
+
+          item.staff +
+
+          '<span class="care-time">' +
+
+            minutesToLabel(
+              item.start
+            ) +
+
+            "–" +
+
+            minutesToLabel(
+              item.end
+            ) +
+
+          '</span>' +
+
+        '</span>';
+
+    });
+
+
+    html +=
+        '</div>' +
+      '</div>';
+
+  }
+
+
+  /* REGULAR 4:30 AFTER CARE */
+
+  if (afterCare.length) {
+
+    html +=
+      '<div class="aftercare-staff">';
+
+
+    afterCare.forEach(item => {
+
+      html +=
+        '<span class="care-person">' +
+
+          item.staff +
+
+          '<span class="care-time">' +
+
+            minutesToLabel(
+              item.start
+            ) +
+
+            "–" +
+
+            minutesToLabel(
+              item.end
+            ) +
+
+          '</span>' +
+
+        '</span>';
+
+    });
+
+
+    html +=
+      '</div>';
+
+  }
+
+
+  if (
+    !gather.length &&
+    !afterCare.length
+  ) {
+
+    html =
+      '<span style="color:#888">—</span>';
+
+  }
+
+
+  element.innerHTML =
+    html;
+
+}
     renderWholeSchool();
 
     renderClassroom();
