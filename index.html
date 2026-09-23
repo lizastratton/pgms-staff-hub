@@ -1,77 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-/* =========================================================
-   GATHER 4:30 AFTER CARE
-========================================================= */
-
-.gather-box {
-
-  border:
-    2px dashed
-    #c0b2cf;
-
-  border-radius:9px;
-
-  padding:10px;
-
-  margin:8px;
-
-  background:#fcf9ff;
-
-  text-align:center;
-
-}
-
-
-.gather-title {
-
-  margin-bottom:8px;
-
-  color:var(--care-dark);
-
-  font-size:11px;
-
-  font-weight:bold;
-
-  text-transform:uppercase;
-
-  letter-spacing:.3px;
-
-}
-
-
-.gather-staff {
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  flex-wrap:wrap;
-
-  gap:6px;
-
-}
-
-
-.aftercare-staff {
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  flex-wrap:wrap;
-
-  gap:6px;
-
-  padding:6px;
-
-}
-  
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -216,23 +145,7 @@ a {
    NAVIGATION
 ========================================================= */
 
-<nav class="nav">
 
-  <button
-    class="nav-button active"
-    data-view="home"
-  >
-    Home
-  </button>
-
-  <button
-    class="nav-button"
-    data-view="schedules"
-  >
-    Schedules
-  </button>
-
-</nav>
 
 /* =========================================================
    VIEWS
@@ -654,68 +567,7 @@ select {
 
 }
 
-  <!-- ======================================================
-     SCHEDULES HOME
-====================================================== -->
-
-<section
-  id="schedules"
-  class="view"
->
-
-  <div class="card">
-
-    <h2 class="section-title">
-      Schedules
-    </h2>
-
-    <div class="home-buttons">
-
-      <div
-        class="home-link"
-        onclick="showView('whole-school')"
-      >
-        <strong>Whole School Daily</strong>
-        <span>
-          View staffing across the entire school.
-        </span>
-      </div>
-
-      <div
-        class="home-link"
-        onclick="showView('classroom')"
-      >
-        <strong>Classroom Daily</strong>
-        <span>
-          View Spruce, Birch, Maple or Seedlings.
-        </span>
-      </div>
-
-      <div
-        class="home-link"
-        onclick="showView('daily')"
-      >
-        <strong>Individual Daily</strong>
-        <span>
-          View one staff member's schedule for the day.
-        </span>
-      </div>
-
-      <div
-        class="home-link"
-        onclick="showView('weekly')"
-      >
-        <strong>Individual Weekly</strong>
-        <span>
-          View one staff member's full week.
-        </span>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+  
 
 /* =========================================================
    WHOLE SCHOOL
@@ -1518,6 +1370,37 @@ select {
 
 }
 
+
+/* ===== POLISHED HEADER + NAV ===== */
+.site-header {
+  background:linear-gradient(135deg,#123d2b 0%,#1c513b 100%);
+  padding:18px 22px; border-radius:16px; margin-bottom:10px;
+  box-shadow:0 8px 24px rgba(18,61,43,.14);
+}
+.site-title { color:white; font-size:29px; letter-spacing:.2px; }
+.site-subtitle { color:rgba(255,255,255,.78); }
+.logo { width:245px; max-height:82px; filter:brightness(0) invert(1); opacity:.96; }
+.nav { display:flex; gap:7px; margin:0 0 14px; padding:5px; background:#e7ece8; border-radius:10px; width:max-content; }
+.nav-button { border:0; background:transparent; color:var(--pine); font-weight:700; padding:8px 16px; border-radius:7px; cursor:pointer; }
+.nav-button:hover { background:rgba(255,255,255,.7); }
+.nav-button.active { background:white; box-shadow:0 1px 5px rgba(0,0,0,.09); }
+.welcome { position:relative; overflow:hidden; background:linear-gradient(135deg,#123d2b,#1f5a41); padding:28px; }
+.welcome::after { content:""; position:absolute; width:180px; height:180px; border:28px solid rgba(255,255,255,.05); border-radius:50%; right:-55px; top:-75px; }
+.welcome h1 { font-size:30px; }
+.eyebrow { color:var(--care-dark); font-size:10px; font-weight:800; letter-spacing:1.5px; margin-bottom:5px; }
+.big-title { font-size:25px; margin-bottom:6px; }
+.schedules-landing { padding:24px; }
+.schedule-menu { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:16px; }
+.schedule-choice { text-align:left; border:1px solid var(--line); border-radius:11px; background:#fafbf9; padding:17px; cursor:pointer; color:var(--text); transition:.15s ease; }
+.schedule-choice:hover { background:var(--pine-light); transform:translateY(-1px); border-color:#aebdb3; }
+.schedule-choice strong { display:block; color:var(--pine); font-size:15px; margin-bottom:5px; }
+.schedule-choice span { display:block; color:var(--muted); font-size:11px; line-height:1.4; }
+.gather-box { border:2px dashed #c0b2cf; border-radius:9px; padding:10px; margin:8px; background:#fcf9ff; text-align:center; }
+.gather-title { margin-bottom:8px; color:var(--care-dark); font-size:11px; font-weight:bold; text-transform:uppercase; letter-spacing:.3px; }
+.gather-staff,.aftercare-staff { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:6px; }
+.aftercare-staff { padding:6px; }
+@media (max-width:700px){ .schedule-menu{grid-template-columns:1fr;} .site-header{padding:15px;} .logo{width:175px;} }
+
 </style>
 </head>
 
@@ -1565,42 +1448,8 @@ select {
 ====================================================== -->
 
 <nav class="nav">
-
-  <button
-    class="nav-button active"
-    data-view="home"
-  >
-    Home
-  </button>
-
-  <button
-    class="nav-button"
-    data-view="whole-school"
-  >
-    Whole School
-  </button>
-
-  <button
-    class="nav-button"
-    data-view="classroom"
-  >
-    Classroom
-  </button>
-
-  <button
-    class="nav-button"
-    data-view="daily"
-  >
-    Individual Daily
-  </button>
-
-  <button
-    class="nav-button"
-    data-view="weekly"
-  >
-    Individual Weekly
-  </button>
-
+  <button class="nav-button active" data-view="home">Home</button>
+  <button class="nav-button" data-view="schedules">Schedules</button>
 </nav>
 
 
@@ -1815,6 +1664,23 @@ select {
 
 </section>
 
+
+<!-- ======================================================
+     SCHEDULES HOME
+====================================================== -->
+<section id="schedules" class="view">
+  <div class="card schedules-landing">
+    <div class="eyebrow">SCHEDULES</div>
+    <h2 class="section-title big-title">Choose a Schedule View</h2>
+    <p class="section-subtitle">Pick the view that is most useful for what you need right now.</p>
+    <div class="schedule-menu">
+      <button class="schedule-choice" onclick="showView('whole-school')"><strong>Whole School Daily</strong><span>See all classrooms, duties, early care and after care together.</span></button>
+      <button class="schedule-choice" onclick="showView('classroom')"><strong>Classroom Daily</strong><span>Focus on Spruce, Birch, Maple or Seedlings.</span></button>
+      <button class="schedule-choice" onclick="showView('daily')"><strong>Individual Daily</strong><span>See one staff member's assignments for a selected day.</span></button>
+      <button class="schedule-choice" onclick="showView('weekly')"><strong>Individual Weekly</strong><span>See one staff member's complete Monday–Friday schedule.</span></button>
+    </div>
+  </div>
+</section>
 
 <!-- ======================================================
      WHOLE SCHOOL
@@ -2245,16 +2111,10 @@ const primaryActivities = [
   },
 
   {
-  name:"Afternoon Recess",
-  start:14*60+30,
-  end:15*60+30
-},
-
-{
-  name:"Gather 4:30 Kids",
-  start:15*60+30,
-  end:15*60+45
-}
+    name:"Afternoon Recess",
+    start:14*60+30,
+    end:15*60+30
+  }
 
 ];
 
@@ -4341,37 +4201,8 @@ function populateStaffDropdowns() {
 
 
 /* =========================================================
-   LOAD
+   PRIMARY 4:30 AFTER CARE
 ========================================================= */
-
-async function loadSchedule() {
-
-  try {
-
-    const response =
-      await fetch(
-        CSV_URL
-      );
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        "Could not load schedule."
-      );
-
-    }
-
-
-    const text =
-      await response.text();
-
-
-    scheduleData =
-      parseCSV(text);
-
-
-    populateStaffDropdowns();
 
 function renderPrimary430(day) {
 
@@ -4498,6 +4329,41 @@ function renderPrimary430(day) {
     html;
 
 }
+
+/* =========================================================
+   LOAD
+========================================================= */
+
+async function loadSchedule() {
+
+  try {
+
+    const response =
+      await fetch(
+        CSV_URL
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Could not load schedule."
+      );
+
+    }
+
+
+    const text =
+      await response.text();
+
+
+    scheduleData =
+      parseCSV(text);
+
+
+    populateStaffDropdowns();
+
+
     renderWholeSchool();
 
     renderClassroom();
