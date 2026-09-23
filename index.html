@@ -1277,379 +1277,76 @@ select {
    RESPONSIVE
 ========================================================= */
 
-/* =========================================================
-   MOBILE
-========================================================= */
+@media (max-width:950px) {
 
-/* =========================================================
-   MOBILE
-========================================================= */
+  .home-grid,
+  .school-grid {
+
+    grid-template-columns:1fr;
+
+  }
+
+  .after-grid {
+
+    grid-template-columns:
+      1fr
+      1fr;
+
+  }
+
+}
+
 
 @media (max-width:700px) {
 
-  .site-header {
-    padding:20px;
-  }
-
-  .site-title {
-    font-size:28px;
-  }
-
-  .logo {
-    width:135px;
-  }
-
-  .home-buttons {
-    grid-template-columns:1fr;
-  }
-
-}
-
-  /* =====================================================
-     GENERAL
-  ===================================================== */
-
   .app {
-    padding:8px;
-  }
 
-  .card,
-  .schedule-card {
     padding:10px;
-    border-radius:12px;
+
   }
-
-
-  /* =====================================================
-     HEADER
-  ===================================================== */
 
   .site-header {
-    padding:16px;
-    border-radius:10px;
-  }
 
-  .site-title {
-    font-size:27px;
-  }
+    align-items:flex-start;
 
-  .site-subtitle {
-    font-size:11px;
   }
 
   .logo {
-    width:115px;
-    max-width:35vw;
+
+    width:150px;
+
   }
 
-  .header-nav {
-    margin-top:11px;
-  }
+  .home-buttons,
+  .quick-links {
 
-  .header-nav-button {
-    padding:4px 8px;
-    font-size:10px;
-  }
-
-
-  /* =====================================================
-     HOME
-  ===================================================== */
-
-  .home-grid {
     grid-template-columns:1fr;
+
   }
 
-  .home-buttons {
+  .week-grid {
+
     grid-template-columns:1fr;
+
   }
 
+  .early-grid,
+  .after-grid {
 
-  /* =====================================================
-     WHOLE SCHOOL
-
-     IMPORTANT:
-     Primary and Seedlings STACK on mobile.
-  ===================================================== */
-
-  .main-grid {
-    display:grid;
     grid-template-columns:1fr;
-    gap:12px;
+
   }
 
-  .main-grid > * {
-    width:100%;
-    min-width:0;
-  }
-
-
-  /* =====================================================
-     PRIMARY
-
-     Full width container.
-     Activity stays visible.
-     Classroom columns scroll horizontally.
-  ===================================================== */
-
-  #primary-content {
-    display:block;
-
-    width:100%;
-    max-width:100%;
-
-    overflow-x:auto;
-    overflow-y:hidden;
-
-    -webkit-overflow-scrolling:touch;
-
-    padding-bottom:7px;
-  }
-
-
-  /*
-     Activity = 90px
-     Spruce = 280px
-     Birch = 280px
-     Maple = 280px
-
-     The schedule is intentionally wider than the phone.
-  */
-
-  #primary-content .primary-layout {
-    display:grid;
+  .primary-layout {
 
     grid-template-columns:
-      90px
-      280px
-      280px
-      280px;
+      80px
+      repeat(3,1fr);
 
-    width:930px;
-    min-width:930px;
-  }
-
-
-  /* =====================================================
-     PRIMARY — STICKY ACTIVITY COLUMN
-  ===================================================== */
-
-  #primary-content .activity-header {
-    position:sticky;
-    left:0;
-
-    z-index:30;
-
-    background:#edf0ec;
-
-    box-shadow:
-      3px 0 5px
-      rgba(0,0,0,.08);
-  }
-
-
-  #primary-content .activity-track {
-    position:sticky;
-    left:0;
-
-    z-index:20;
-
-    background:#f7f6f2;
-
-    box-shadow:
-      3px 0 5px
-      rgba(0,0,0,.08);
-  }
-
-
-  /* =====================================================
-     PRIMARY — ACTIVITY LABELS
-  ===================================================== */
-
-  #primary-content .activity-block {
-    padding:5px 4px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-  }
-
-
-  #primary-content .activity-name {
-    font-size:11px;
-    line-height:1.15;
-
-    font-weight:700;
-  }
-
-
-  #primary-content .activity-time {
-    margin-top:3px;
-
-    font-size:8px;
-    line-height:1.15;
-  }
-
-
-  /* =====================================================
-     PRIMARY — ROOM HEADERS
-  ===================================================== */
-
-  #primary-content .room-header {
-    padding:8px 4px;
-
-    font-size:13px;
-    font-weight:800;
-
-    text-align:center;
-  }
-
-
-  /* =====================================================
-     PRIMARY — STAFF BLOCKS
-  ===================================================== */
-
-  #primary-content .staff-block {
-    padding:6px 4px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    overflow:hidden;
-  }
-
-
-  #primary-content .staff-name {
-    font-size:12px;
-    line-height:1.1;
-
-    word-break:normal;
-    overflow-wrap:normal;
-    hyphens:none;
-
-    white-space:normal;
-  }
-
-
-  #primary-content .staff-time {
-    margin-top:4px;
-
-    font-size:9px;
-    line-height:1.15;
-
-    white-space:normal;
-  }
-
-
-  /* =====================================================
-     SEEDLINGS
-
-     Full phone width underneath Primary.
-     No horizontal scrolling needed.
-  ===================================================== */
-
-  #seedlings-content {
-    width:100%;
-    max-width:100%;
-    overflow:visible;
-  }
-
-
-  #seedlings-content .seedlings-layout {
-    width:100%;
-    min-width:0;
-
-    grid-template-columns:
-      105px
-      minmax(0,1fr);
-  }
-
-
-  #seedlings-content .activity-name {
-    font-size:11px;
-  }
-
-
-  #seedlings-content .activity-time {
-    font-size:8px;
-  }
-
-
-  #seedlings-content .staff-name {
-    font-size:11px;
-
-    word-break:normal;
-    overflow-wrap:normal;
-    hyphens:none;
-  }
-
-
-  #seedlings-content .staff-time {
-    font-size:8px;
-  }
-
-
-  /* =====================================================
-     EARLY / AFTER CARE + OTHER DUTIES
-  ===================================================== */
-
-  .care-grid {
-    grid-template-columns:1fr;
-  }
-
-  .aftercare-grid {
-    grid-template-columns:1fr;
-  }
-
-
-  /* =====================================================
-     INDIVIDUAL WEEKLY
-  ===================================================== */
-
-  .weekly-grid {
-    grid-template-columns:1fr;
-  }
-
-
-  /* =====================================================
-     INDIVIDUAL DAILY
-  ===================================================== */
-
-  .daily-single {
-    width:100%;
-    max-width:100%;
-  }
-
-
-  /* =====================================================
-     CONTROLS
-  ===================================================== */
-
-  .controls {
-    gap:7px;
-  }
-
-  select {
-    max-width:100%;
-  }
-
-
-  /* =====================================================
-     FOOTER
-  ===================================================== */
-
-  .portal-footer {
-    margin-top:12px;
   }
 
 }
+
 
 /* =========================================================
    PRINT
@@ -1959,513 +1656,26 @@ body {
   .schedule-menu { grid-template-columns:1fr; }
 }
 
-  /* Keep the home page from getting too stretched on large screens */
-#home {
-  max-width: 1180px;
-  margin: 0 auto;
+
+
+
+/* ===== FINAL MOBILE WHOLE-SCHOOL OVERRIDES ===== */
+@media (max-width:700px){
+  .school-grid{display:block !important;grid-template-columns:1fr !important;}
+  .school-grid>.schedule-card{width:100% !important;min-width:0 !important;margin-bottom:12px;}
+  #primary-content{display:block;width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;padding-bottom:6px;}
+  #primary-content .primary-layout{width:750px !important;min-width:750px !important;grid-template-columns:88px 220px 220px 220px !important;}
+  #primary-content .activity-header{position:sticky;left:0;z-index:30;background:#edf0ec;box-shadow:3px 0 5px rgba(0,0,0,.07);}
+  #primary-content .activity-track{position:sticky;left:0;z-index:20;background:#f8f7f3;box-shadow:3px 0 5px rgba(0,0,0,.07);}
+  #primary-content .staff-name{font-size:11px;word-break:normal;overflow-wrap:normal;hyphens:none;}
+  #primary-content .staff-time{font-size:8px;}
+  #seedlings-content{width:100%;max-width:100%;overflow:visible;}
+  #seedlings-content .seedlings-layout{width:100% !important;min-width:0 !important;grid-template-columns:100px minmax(0,1fr) !important;}
+  #seedlings-content .staff-name{font-size:11px;word-break:normal;overflow-wrap:normal;hyphens:none;}
+  #seedlings-content .staff-time{font-size:8px;}
 }
 
-/* =========================================================
-   NEW CLEAN PORTAL DESIGN
-========================================================= */
-
-/* ---------- COLORS ---------- */
-
-:root {
-  --pine:#0b3325;
-  --pine-light:#e8efeb;
-}
-
-
-/* ---------- PAGE ---------- */
-
-body {
-  background:#f4f3ee;
-}
-
-.app {
-  max-width:1400px;
-  padding:18px;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.site-header {
-  position:relative;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  min-height:0;
-
-  padding:24px 34px 20px;
-
-  margin-bottom:18px;
-
-  border-radius:14px;
-
-  background:#0b3325;
-
-  box-shadow:
-    0 6px 18px
-    rgba(18,61,43,.12);
-}
-
-
-/* remove decorative circles */
-
-.site-header::before,
-.site-header::after {
-  display:none;
-}
-
-
-.header-copy {
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-}
-
-
-/* ---------- MAIN TITLE ---------- */
-
-.site-title {
-  margin:0;
-
-  color:white;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:35px;
-  line-height:1;
-
-  font-weight:600;
-
-  letter-spacing:-.5px;
-}
-
-
-.site-subtitle {
-  margin-top:7px;
-
-  color:rgba(255,255,255,.78);
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  font-size:13px;
-}
-
-
-/* ---------- HEADER NAV ---------- */
-
-.header-nav {
-  display:flex;
-  gap:5px;
-
-  margin-top:15px;
-}
-
-
-.header-nav-button {
-  border:1px solid rgba(255,255,255,.25);
-
-  border-radius:5px;
-
-  padding:5px 10px;
-
-  background:transparent;
-
-  color:white;
-
-  font-size:11px;
-  font-weight:600;
-
-  cursor:pointer;
-
-  transition:.15s ease;
-}
-
-
-.header-nav-button:hover {
-  background:rgba(255,255,255,.12);
-}
-
-
-.header-nav-button.active {
-  background:white;
-  color:var(--pine);
-}
-
-
-/* ---------- LOGO ---------- */
-
-.logo {
-  width:185px;
-  max-width:28vw;
-  max-height:90px;
-
-  object-fit:contain;
-
-  filter:brightness(0) invert(1);
-}
-
-
-/* hide old nav if any remains */
-
-.nav {
-  display:none;
-}
-
-
-/* =========================================================
-   HOME
-========================================================= */
-
-#home {
-  max-width:none;
-  margin:0;
-}
-
-
-.home-grid {
-  display:grid;
-
-  grid-template-columns:
-    minmax(0, 1.8fr)
-    minmax(280px, .8fr);
-
-  gap:14px;
-
-  align-items:start;
-}
-
-
-/* =========================================================
-   HOME PANELS
-========================================================= */
-
-.home-panel {
-  overflow:hidden;
-
-  background:white;
-
-  border:
-    1px solid
-    rgba(18,61,43,.08);
-
-  border-radius:12px;
-
-  box-shadow:
-    0 3px 12px
-    rgba(34,50,40,.06);
-}
-
-
-.home-panel-header {
-  padding:11px 16px;
-
-  background:var(--pine);
-
-  color:white;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:21px;
-  font-weight:600;
-
-  letter-spacing:.1px;
-}
-
-
-.home-panel-content {
-  padding:14px;
-}
-
-
-/* =========================================================
-   UPDATES INSIDE SCHEDULES
-========================================================= */
-
-.home-updates {
-  margin-bottom:12px;
-}
-
-
-.home-updates-title {
-  margin-bottom:6px;
-
-  color:var(--pine);
-
-  font-size:11px;
-  font-weight:800;
-
-  text-transform:uppercase;
-  letter-spacing:.5px;
-}
-
-
-.updates {
-  min-height:0;
-
-  padding:8px 10px;
-
-  border:
-    1px solid
-    #d7ddd8;
-
-  border-left:
-    3px solid
-    var(--pine);
-
-  border-radius:6px;
-
-  background:#f8faf8;
-}
-
-
-.no-updates {
-  font-size:11px;
-}
-
-
-.no-updates::before {
-  width:18px;
-  height:18px;
-
-  margin-right:6px;
-
-  font-size:10px;
-}
-
-
-/* =========================================================
-   SCHEDULE BUTTONS
-========================================================= */
-
-.home-buttons {
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
-  gap:7px;
-}
-
-
-.home-link {
-  min-height:0;
-
-  padding:
-    10px
-    34px
-    10px
-    11px;
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:7px;
-
-  background:#fafbf9;
-
-  cursor:pointer;
-}
-
-
-.home-link:nth-child(1),
-.home-link:nth-child(2),
-.home-link:nth-child(3),
-.home-link:nth-child(4) {
-  border-top:
-    1px solid
-    var(--line);
-}
-
-
-.home-link strong {
-  color:var(--pine);
-
-  font-size:12px;
-  line-height:1.2;
-}
-
-
-.home-link span {
-  margin-top:3px;
-
-  font-size:9px;
-  line-height:1.3;
-
-  color:var(--muted);
-}
-
-
-.home-link::after {
-  right:11px;
-
-  font-size:14px;
-}
-
-
-.home-link:hover {
-  transform:none;
-
-  box-shadow:
-    0 3px 9px
-    rgba(18,61,43,.08);
-}
-
-
-/* =========================================================
-   QUICK LINKS — ONE COMPACT LIST
-========================================================= */
-
-.quick-links {
-  display:flex;
-  flex-direction:column;
-
-  gap:0;
-}
-
-
-.quick-link {
-  position:relative;
-
-  display:flex;
-  align-items:center;
-
-  min-height:0;
-
-  padding:
-    9px
-    30px
-    9px
-    6px;
-
-  border:0;
-
-  border-bottom:
-    1px solid
-    #e3e6e3;
-
-  border-radius:0;
-
-  background:white;
-
-  color:var(--pine);
-
-  font-size:11px;
-  font-weight:700;
-
-  line-height:1.2;
-}
-
-
-.quick-link:last-child {
-  border-bottom:0;
-}
-
-
-.quick-link::before {
-  width:5px;
-  height:5px;
-
-  flex:0 0 5px;
-
-  margin-right:9px;
-
-  background:#8da993;
-}
-
-
-.quick-link::after {
-  right:7px;
-
-  font-size:13px;
-}
-
-
-.quick-link:hover {
-  transform:none;
-
-  background:#f4f7f5;
-
-  box-shadow:none;
-}
-
-
-#newsletter-link::after {
-  right:5px;
-
-  font-size:8px;
-}
-
-
-/* =========================================================
-   SECTION HEADINGS THROUGHOUT SITE
-========================================================= */
-
-.section-title,
-.schedule-title,
-.big-title {
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-weight:600;
-
-  color:var(--pine);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width:850px) {
-
-  .home-grid {
-    grid-template-columns:1fr;
-  }
-
-}
-
-
-@media (max-width:700px) {
-
-  .site-header {
-    padding:20px;
-  }
-
-  .site-title {
-    font-size:28px;
-  }
-
-  .logo {
-    width:135px;
-  }
-
-  .home-buttons {
-    grid-template-columns:1fr;
-  }
-
-}
-  
+.header-copy{min-width:0}.header-nav{display:flex;gap:5px;margin-top:15px}.header-nav .nav-button{border:1px solid rgba(255,255,255,.25);border-radius:5px;padding:5px 10px;background:transparent;color:white;font-size:11px;font-weight:700;cursor:pointer}.header-nav .nav-button:hover{background:rgba(255,255,255,.12)}.header-nav .nav-button.active{background:white;color:var(--pine)}
 </style>
 </head>
 
@@ -2480,259 +1690,52 @@ body {
 ====================================================== -->
 
 <header class="site-header">
-
   <div class="header-copy">
-
-    <div class="site-title">
-      Pine Grove Staff Portal
-    </div>
-
-    <div class="site-subtitle">
-      Schedules, calendars, updates &amp; resources.
-    </div>
-
+    <div class="site-title">Pine Grove Staff Portal</div>
+    <div class="site-subtitle">Schedules, calendars, updates &amp; resources.</div>
     <nav class="header-nav">
-
-      <button
-        class="header-nav-button active"
-        data-view="home"
-        onclick="showView('home')"
-      >
-        Home
-      </button>
-
-      <button
-        class="header-nav-button"
-        data-view="schedules"
-        onclick="showView('schedules')"
-      >
-        Schedules
-      </button>
-
-      <button
-        class="header-nav-button"
-        data-view="home"
-        onclick="showView('home'); setTimeout(() => document.getElementById('quick-links-card').scrollIntoView({behavior:'smooth'}), 100)"
-      >
-        Quick Links
-      </button>
-
+      <button class="nav-button active" data-view="home">Home</button>
+      <button class="nav-button" data-view="schedules">Schedules</button>
+      <button class="nav-button" type="button" onclick="showView('home'); setTimeout(() => document.getElementById('quick-links-card')?.scrollIntoView({behavior:'smooth'}),80)">Quick Links</button>
     </nav>
-
   </div>
-
-  <img
-    src="logo.png"
-    alt="Pine Grove Montessori School"
-    class="logo"
-  >
-
+  <img src="logo.png" alt="Pine Grove Montessori School" class="logo">
 </header>
-
 
 <!-- ======================================================
      HOME
 ====================================================== -->
+
 <section id="home" class="view active">
-
   <div class="home-grid">
-
-
-    <!-- =========================
-         SCHEDULES
-    ========================== -->
-
-    <div class="home-panel schedules-panel">
-
-      <div class="home-panel-header">
-        Schedules
-      </div>
-
+    <div class="home-panel">
+      <div class="home-panel-header">Schedules</div>
       <div class="home-panel-content">
-
-
-        <!-- TODAY'S UPDATES -->
-
         <div class="home-updates">
-
-          <div class="home-updates-title">
-            Today's Updates
-          </div>
-
-          <div class="updates">
-
-            <div class="no-updates">
-              No schedule changes posted for today.
-            </div>
-
-          </div>
-
+          <div class="home-updates-title">Today's Updates</div>
+          <div class="updates"><div class="no-updates">No schedule changes posted for today.</div></div>
         </div>
-
-
-        <!-- SCHEDULE BUTTONS -->
-
         <div class="home-buttons">
-
-          <div
-            class="home-link"
-            onclick="showView('whole-school')"
-          >
-
-            <strong>
-              All School Coverage Schedule
-            </strong>
-
-            <span>
-              View all classrooms <strong>direct care</strong> coverage.
-            </span>
-
-          </div>
-
-
-          <div
-            class="home-link"
-            onclick="showView('classroom')"
-          >
-
-            <strong>
-              Individual Classroom Schedules
-            </strong>
-
-            <span>
-              View Spruce, Birch, Maple or Seedlings
-              <strong>direct care</strong> coverage.
-            </span>
-
-          </div>
-
-
-          <div
-            class="home-link"
-            onclick="showView('daily')"
-          >
-
-            <strong>
-              Individual Daily Schedules
-            </strong>
-
-            <span>
-              View one person's entire day.
-            </span>
-
-          </div>
-
-
-          <div
-            class="home-link"
-            onclick="showView('weekly')"
-          >
-
-            <strong>
-              Individual Weekly Schedules
-            </strong>
-
-            <span>
-              View one person's full week.
-            </span>
-
-          </div>
-
+          <div class="home-link" onclick="showView('whole-school')"><strong>All School Coverage Schedule</strong><span>View all classrooms and direct care coverage.</span></div>
+          <div class="home-link" onclick="showView('classroom')"><strong>Individual Classroom Schedules</strong><span>View Spruce, Birch, Maple or Seedlings direct care coverage.</span></div>
+          <div class="home-link" onclick="showView('daily')"><strong>Individual Daily Schedules</strong><span>View one person's entire day, including time outside a classroom.</span></div>
+          <div class="home-link" onclick="showView('weekly')"><strong>Individual Weekly</strong><span>View one staff member's full week.</span></div>
         </div>
-
       </div>
-
     </div>
-
-
-    <!-- =========================
-         QUICK LINKS
-    ========================== -->
-
-    <div
-      class="home-panel quick-links-panel"
-      id="quick-links-card"
-    >
-
-      <div class="home-panel-header">
-        Quick Links
-      </div>
-
-      <div class="home-panel-content">
-
-        <div class="quick-links">
-
-
-          <a
-            class="quick-link"
-            target="_blank"
-            href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQsp6zsriTeVRmNkxeuoiTbp_4hezPE-8J05hML6SyH08RKaY8-UeDLtotYc5x4Z02irWKSDYd__44r/pubhtml?gid=0&single=true"
-          >
-            School Calendar — Family Version
-          </a>
-
-
-          <a
-            class="quick-link"
-            target="_blank"
-            href="https://calendar.google.com/calendar/u/2?cid=Y19hMzY5ODMxNjE5ODJmYWI1OTQwZGEyODg0NmJjMzdiZjRjNmU0ZDk0MzllNDdmYTM1NDM2MDVhNDgwZDI5ZDM0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
-          >
-            School Calendar — Teacher Version
-          </a>
-
-
-          <a
-            class="quick-link"
-            target="_blank"
-            href="https://calendar.google.com/calendar/u/2?cid=Y18yNDZhMDk4MzNhMGFlZjY3YjM2YTEzMzBkNGI4ZjlmMmNmNjlkZTk4YTdmOWQxY2Q0YTM4NjkxZmQ4OWE1N2ZmQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
-          >
-            Staffing Calendar
-          </a>
-
-
-          <a
-            class="quick-link"
-            target="_blank"
-            href="https://lizastratton.github.io/pine-grove-snack-signup/"
-          >
-            Snack Calendar
-          </a>
-
-
-          <a
-            class="quick-link"
-            target="_blank"
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdEut-bGDiHXirzYaXbVArHm4P2eZe1ESHd0YWPUtLLAFCwww/viewform?usp=sharing&ouid=109174049201169163512"
-          >
-            Wish List Item Request
-          </a>
-
-
-          <a
-            class="quick-link"
-            target="_blank"
-            href="https://app.gusto.com/employee/expenses/me"
-          >
-            Mileage &amp; Expense Reimbursement
-          </a>
-
-
-          <div
-            class="quick-link"
-            id="newsletter-link"
-          >
-            Monthly Newsletter
-          </div>
-
-
-        </div>
-
-      </div>
-
+    <div class="home-panel" id="quick-links-card">
+      <div class="home-panel-header">Quick Links</div>
+      <div class="home-panel-content"><div class="quick-links">
+        <a class="quick-link" target="_blank" href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQsp6zsriTeVRmNkxeuoiTbp_4hezPE-8J05hML6SyH08RKaY8-UeDLtotYc5x4Z02irWKSDYd__44r/pubhtml?gid=0&single=true">School Calendar — Family Version</a>
+        <a class="quick-link" target="_blank" href="https://calendar.google.com/calendar/u/2?cid=Y19hMzY5ODMxNjE5ODJmYWI1OTQwZGEyODg0NmJjMzdiZjRjNmU0ZDk0MzllNDdmYTM1NDM2MDVhNDgwZDI5ZDM0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">School Calendar — Teacher Version</a>
+        <a class="quick-link" target="_blank" href="https://calendar.google.com/calendar/u/2?cid=Y18yNDZhMDk4MzNhMGFlZjY3YjM2YTEzMzBkNGI4ZjlmMmNmNjlkZTk4YTdmOWQxY2Q0YTM4NjkxZmQ4OWE1N2ZmQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20">Staffing Calendar</a>
+        <a class="quick-link" target="_blank" href="https://lizastratton.github.io/pine-grove-snack-signup/">Snack Calendar</a>
+        <a class="quick-link" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdEut-bGDiHXirzYaXbVArHm4P2eZe1ESHd0YWPUtLLAFCwww/viewform?usp=sharing&ouid=109174049201169163512">Wish List Item Request</a>
+        <a class="quick-link" target="_blank" href="https://app.gusto.com/employee/expenses/me">Mileage &amp; Expense Reimbursement</a>
+        <div class="quick-link" id="newsletter-link">Monthly Newsletter</div>
+      </div></div>
     </div>
-
   </div>
-
 </section>
 
 <!-- ======================================================
@@ -3119,8 +2122,6 @@ body {
 
 </section>
 
-
-<footer class="portal-footer">Pine Grove Montessori School • Staff Resources</footer>
 
 </div>
 
