@@ -1281,19 +1281,33 @@ select {
    MOBILE
 ========================================================= */
 
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width:700px) {
 
-  /* ---------- GENERAL PAGE ---------- */
+  /* =====================================================
+     GENERAL
+  ===================================================== */
 
   .app {
+    padding:8px;
+  }
+
+  .card,
+  .schedule-card {
     padding:10px;
+    border-radius:12px;
   }
 
 
-  /* ---------- HEADER ---------- */
+  /* =====================================================
+     HEADER
+  ===================================================== */
 
   .site-header {
-    padding:18px;
+    padding:16px;
     border-radius:10px;
   }
 
@@ -1306,12 +1320,12 @@ select {
   }
 
   .logo {
-    width:120px;
-    max-width:38vw;
+    width:115px;
+    max-width:35vw;
   }
 
   .header-nav {
-    margin-top:12px;
+    margin-top:11px;
   }
 
   .header-nav-button {
@@ -1320,7 +1334,9 @@ select {
   }
 
 
-  /* ---------- HOME PAGE ---------- */
+  /* =====================================================
+     HOME
+  ===================================================== */
 
   .home-grid {
     grid-template-columns:1fr;
@@ -1332,55 +1348,85 @@ select {
 
 
   /* =====================================================
-     WHOLE SCHOOL — PRIMARY
-     Keep classrooms readable and allow horizontal swipe
+     WHOLE SCHOOL
+
+     IMPORTANT:
+     Primary and Seedlings STACK on mobile.
+  ===================================================== */
+
+  .main-grid {
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .main-grid > * {
+    width:100%;
+    min-width:0;
+  }
+
+
+  /* =====================================================
+     PRIMARY
+
+     Full width container.
+     Activity stays visible.
+     Classroom columns scroll horizontally.
   ===================================================== */
 
   #primary-content {
+    display:block;
+
     width:100%;
+    max-width:100%;
+
     overflow-x:auto;
     overflow-y:hidden;
 
     -webkit-overflow-scrolling:touch;
 
-    padding-bottom:8px;
-
-    scrollbar-width:thin;
+    padding-bottom:7px;
   }
 
 
   /*
-    Do NOT squeeze all four columns onto the phone.
+     Activity = 90px
+     Spruce = 280px
+     Birch = 280px
+     Maple = 280px
 
-    Activity = 82px
-    Each classroom = 260px
+     The schedule is intentionally wider than the phone.
   */
 
   #primary-content .primary-layout {
-    grid-template-columns:
-      82px
-      260px
-      260px
-      260px;
+    display:grid;
 
-    width:862px;
-    min-width:862px;
+    grid-template-columns:
+      90px
+      280px
+      280px
+      280px;
+
+    width:930px;
+    min-width:930px;
   }
 
 
-  /* ---------- STICKY ACTIVITY COLUMN ---------- */
+  /* =====================================================
+     PRIMARY — STICKY ACTIVITY COLUMN
+  ===================================================== */
 
   #primary-content .activity-header {
     position:sticky;
     left:0;
 
-    z-index:20;
+    z-index:30;
 
     background:#edf0ec;
 
     box-shadow:
       3px 0 5px
-      rgba(0,0,0,.05);
+      rgba(0,0,0,.08);
   }
 
 
@@ -1388,51 +1434,68 @@ select {
     position:sticky;
     left:0;
 
-    z-index:10;
+    z-index:20;
 
     background:#f7f6f2;
 
     box-shadow:
       3px 0 5px
-      rgba(0,0,0,.05);
+      rgba(0,0,0,.08);
   }
 
 
-  /* ---------- ACTIVITY LABELS ---------- */
+  /* =====================================================
+     PRIMARY — ACTIVITY LABELS
+  ===================================================== */
 
   #primary-content .activity-block {
-    padding:5px 3px;
+    padding:5px 4px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 
     text-align:center;
   }
 
+
   #primary-content .activity-name {
-    font-size:10px;
+    font-size:11px;
     line-height:1.15;
+
+    font-weight:700;
   }
+
 
   #primary-content .activity-time {
     margin-top:3px;
 
-    font-size:7px;
+    font-size:8px;
     line-height:1.15;
   }
 
 
-  /* ---------- CLASSROOM HEADERS ---------- */
+  /* =====================================================
+     PRIMARY — ROOM HEADERS
+  ===================================================== */
 
   #primary-content .room-header {
-    font-size:12px;
+    padding:8px 4px;
+
+    font-size:13px;
     font-weight:800;
 
-    padding:8px 4px;
+    text-align:center;
   }
 
 
-  /* ---------- STAFF BLOCKS ---------- */
+  /* =====================================================
+     PRIMARY — STAFF BLOCKS
+  ===================================================== */
 
   #primary-content .staff-block {
-    padding:5px 3px;
+    padding:6px 4px;
 
     display:flex;
     flex-direction:column;
@@ -1445,13 +1508,8 @@ select {
   }
 
 
-  /*
-    Most important mobile fix:
-    don't break names in the middle of words.
-  */
-
   #primary-content .staff-name {
-    font-size:11px;
+    font-size:12px;
     line-height:1.1;
 
     word-break:normal;
@@ -1463,9 +1521,9 @@ select {
 
 
   #primary-content .staff-time {
-    margin-top:3px;
+    margin-top:4px;
 
-    font-size:8px;
+    font-size:9px;
     line-height:1.15;
 
     white-space:normal;
@@ -1473,12 +1531,56 @@ select {
 
 
   /* =====================================================
-     SEEDLINGS / OTHER SCHEDULE CONTENT
+     SEEDLINGS
+
+     Full phone width underneath Primary.
+     No horizontal scrolling needed.
   ===================================================== */
 
-  .main-grid {
-    grid-template-columns:1fr;
+  #seedlings-content {
+    width:100%;
+    max-width:100%;
+    overflow:visible;
   }
+
+
+  #seedlings-content .seedlings-layout {
+    width:100%;
+    min-width:0;
+
+    grid-template-columns:
+      105px
+      minmax(0,1fr);
+  }
+
+
+  #seedlings-content .activity-name {
+    font-size:11px;
+  }
+
+
+  #seedlings-content .activity-time {
+    font-size:8px;
+  }
+
+
+  #seedlings-content .staff-name {
+    font-size:11px;
+
+    word-break:normal;
+    overflow-wrap:normal;
+    hyphens:none;
+  }
+
+
+  #seedlings-content .staff-time {
+    font-size:8px;
+  }
+
+
+  /* =====================================================
+     EARLY / AFTER CARE + OTHER DUTIES
+  ===================================================== */
 
   .care-grid {
     grid-template-columns:1fr;
@@ -1488,30 +1590,29 @@ select {
     grid-template-columns:1fr;
   }
 
+
+  /* =====================================================
+     INDIVIDUAL WEEKLY
+  ===================================================== */
+
   .weekly-grid {
     grid-template-columns:1fr;
   }
 
 
-  /* ---------- INDIVIDUAL DAILY ---------- */
+  /* =====================================================
+     INDIVIDUAL DAILY
+  ===================================================== */
 
   .daily-single {
+    width:100%;
     max-width:100%;
   }
 
 
-  /* ---------- CARDS ---------- */
-
-  .card {
-    padding:12px;
-  }
-
-  .schedule-card {
-    padding:12px;
-  }
-
-
-  /* ---------- CONTROLS ---------- */
+  /* =====================================================
+     CONTROLS
+  ===================================================== */
 
   .controls {
     gap:7px;
@@ -1522,7 +1623,9 @@ select {
   }
 
 
-  /* ---------- FOOTER ---------- */
+  /* =====================================================
+     FOOTER
+  ===================================================== */
 
   .portal-footer {
     margin-top:12px;
