@@ -1662,6 +1662,507 @@ body {
   margin: 0 auto;
 }
 
+/* =========================================================
+   NEW CLEAN PORTAL DESIGN
+========================================================= */
+
+/* ---------- COLORS ---------- */
+
+:root {
+  --pine:#0b3325;
+  --pine-light:#e8efeb;
+}
+
+
+/* ---------- PAGE ---------- */
+
+body {
+  background:#f4f3ee;
+}
+
+.app {
+  max-width:1400px;
+  padding:18px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.site-header {
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  min-height:0;
+
+  padding:24px 34px 20px;
+
+  margin-bottom:18px;
+
+  border-radius:14px;
+
+  background:#0b3325;
+
+  box-shadow:
+    0 6px 18px
+    rgba(18,61,43,.12);
+}
+
+
+/* remove decorative circles */
+
+.site-header::before,
+.site-header::after {
+  display:none;
+}
+
+
+.header-copy {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+
+
+/* ---------- MAIN TITLE ---------- */
+
+.site-title {
+  margin:0;
+
+  color:white;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:35px;
+  line-height:1;
+
+  font-weight:600;
+
+  letter-spacing:-.5px;
+}
+
+
+.site-subtitle {
+  margin-top:7px;
+
+  color:rgba(255,255,255,.78);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size:13px;
+}
+
+
+/* ---------- HEADER NAV ---------- */
+
+.header-nav {
+  display:flex;
+  gap:5px;
+
+  margin-top:15px;
+}
+
+
+.header-nav-button {
+  border:1px solid rgba(255,255,255,.25);
+
+  border-radius:5px;
+
+  padding:5px 10px;
+
+  background:transparent;
+
+  color:white;
+
+  font-size:11px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:.15s ease;
+}
+
+
+.header-nav-button:hover {
+  background:rgba(255,255,255,.12);
+}
+
+
+.header-nav-button.active {
+  background:white;
+  color:var(--pine);
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo {
+  width:185px;
+  max-width:28vw;
+  max-height:90px;
+
+  object-fit:contain;
+
+  filter:brightness(0) invert(1);
+}
+
+
+/* hide old nav if any remains */
+
+.nav {
+  display:none;
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+#home {
+  max-width:none;
+  margin:0;
+}
+
+
+.home-grid {
+  display:grid;
+
+  grid-template-columns:
+    minmax(0, 1.8fr)
+    minmax(280px, .8fr);
+
+  gap:14px;
+
+  align-items:start;
+}
+
+
+/* =========================================================
+   HOME PANELS
+========================================================= */
+
+.home-panel {
+  overflow:hidden;
+
+  background:white;
+
+  border:
+    1px solid
+    rgba(18,61,43,.08);
+
+  border-radius:12px;
+
+  box-shadow:
+    0 3px 12px
+    rgba(34,50,40,.06);
+}
+
+
+.home-panel-header {
+  padding:11px 16px;
+
+  background:var(--pine);
+
+  color:white;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:21px;
+  font-weight:600;
+
+  letter-spacing:.1px;
+}
+
+
+.home-panel-content {
+  padding:14px;
+}
+
+
+/* =========================================================
+   UPDATES INSIDE SCHEDULES
+========================================================= */
+
+.home-updates {
+  margin-bottom:12px;
+}
+
+
+.home-updates-title {
+  margin-bottom:6px;
+
+  color:var(--pine);
+
+  font-size:11px;
+  font-weight:800;
+
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+
+.updates {
+  min-height:0;
+
+  padding:8px 10px;
+
+  border:
+    1px solid
+    #d7ddd8;
+
+  border-left:
+    3px solid
+    var(--pine);
+
+  border-radius:6px;
+
+  background:#f8faf8;
+}
+
+
+.no-updates {
+  font-size:11px;
+}
+
+
+.no-updates::before {
+  width:18px;
+  height:18px;
+
+  margin-right:6px;
+
+  font-size:10px;
+}
+
+
+/* =========================================================
+   SCHEDULE BUTTONS
+========================================================= */
+
+.home-buttons {
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:7px;
+}
+
+
+.home-link {
+  min-height:0;
+
+  padding:
+    10px
+    34px
+    10px
+    11px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:7px;
+
+  background:#fafbf9;
+
+  cursor:pointer;
+}
+
+
+.home-link:nth-child(1),
+.home-link:nth-child(2),
+.home-link:nth-child(3),
+.home-link:nth-child(4) {
+  border-top:
+    1px solid
+    var(--line);
+}
+
+
+.home-link strong {
+  color:var(--pine);
+
+  font-size:12px;
+  line-height:1.2;
+}
+
+
+.home-link span {
+  margin-top:3px;
+
+  font-size:9px;
+  line-height:1.3;
+
+  color:var(--muted);
+}
+
+
+.home-link::after {
+  right:11px;
+
+  font-size:14px;
+}
+
+
+.home-link:hover {
+  transform:none;
+
+  box-shadow:
+    0 3px 9px
+    rgba(18,61,43,.08);
+}
+
+
+/* =========================================================
+   QUICK LINKS — ONE COMPACT LIST
+========================================================= */
+
+.quick-links {
+  display:flex;
+  flex-direction:column;
+
+  gap:0;
+}
+
+
+.quick-link {
+  position:relative;
+
+  display:flex;
+  align-items:center;
+
+  min-height:0;
+
+  padding:
+    9px
+    30px
+    9px
+    6px;
+
+  border:0;
+
+  border-bottom:
+    1px solid
+    #e3e6e3;
+
+  border-radius:0;
+
+  background:white;
+
+  color:var(--pine);
+
+  font-size:11px;
+  font-weight:700;
+
+  line-height:1.2;
+}
+
+
+.quick-link:last-child {
+  border-bottom:0;
+}
+
+
+.quick-link::before {
+  width:5px;
+  height:5px;
+
+  flex:0 0 5px;
+
+  margin-right:9px;
+
+  background:#8da993;
+}
+
+
+.quick-link::after {
+  right:7px;
+
+  font-size:13px;
+}
+
+
+.quick-link:hover {
+  transform:none;
+
+  background:#f4f7f5;
+
+  box-shadow:none;
+}
+
+
+#newsletter-link::after {
+  right:5px;
+
+  font-size:8px;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS THROUGHOUT SITE
+========================================================= */
+
+.section-title,
+.schedule-title,
+.big-title {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-weight:600;
+
+  color:var(--pine);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width:850px) {
+
+  .home-grid {
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+@media (max-width:700px) {
+
+  .site-header {
+    padding:20px;
+  }
+
+  .site-title {
+    font-size:28px;
+  }
+
+  .logo {
+    width:135px;
+  }
+
+  .home-buttons {
+    grid-template-columns:1fr;
+  }
+
+}
+  
 </style>
 </head>
 
@@ -1676,226 +2177,260 @@ body {
 ====================================================== -->
 
 <header class="site-header">
+
   <div class="header-copy">
-    <div class="site-title">Pine Grove Staff Portal</div>
-    <div class="site-subtitle">Schedules, calendars, updates &amp; resources.</div>
+
+    <div class="site-title">
+      Pine Grove Staff Portal
+    </div>
+
+    <div class="site-subtitle">
+      Schedules, calendars, updates &amp; resources.
+    </div>
+
+    <nav class="header-nav">
+
+      <button
+        class="header-nav-button active"
+        data-view="home"
+        onclick="showView('home')"
+      >
+        Home
+      </button>
+
+      <button
+        class="header-nav-button"
+        data-view="schedules"
+        onclick="showView('schedules')"
+      >
+        Schedules
+      </button>
+
+      <button
+        class="header-nav-button"
+        data-view="home"
+        onclick="showView('home'); setTimeout(() => document.getElementById('quick-links-card').scrollIntoView({behavior:'smooth'}), 100)"
+      >
+        Quick Links
+      </button>
+
+    </nav>
+
   </div>
 
-  <img src="logo.png" alt="Pine Grove Montessori School" class="logo">
+  <img
+    src="logo.png"
+    alt="Pine Grove Montessori School"
+    class="logo"
+  >
+
 </header>
-
-
-<!-- ======================================================
-     NAV
-====================================================== -->
-
-<nav class="nav">
-  <button class="nav-button active" data-view="home">Home</button>
-</nav>
 
 
 <!-- ======================================================
      HOME
 ====================================================== -->
-
-<section
-  id="home"
-  class="view active"
-
-
-
-  <div class="card">
-
-    <h2 class="section-title">
-      Today's Updates
-    </h2>
-
-    <div class="updates">
-
-      <div class="no-updates">
-        No schedule changes posted for today.
-      </div>
-
-    </div>
-
-  </div>
-
+<section id="home" class="view active">
 
   <div class="home-grid">
 
 
-    <!-- SCHEDULES -->
+    <!-- =========================
+         SCHEDULES
+    ========================== -->
 
-    <div class="card">
+    <div class="home-panel schedules-panel">
 
-      <h2 class="section-title">
+      <div class="home-panel-header">
         Schedules
-      </h2>
+      </div>
 
-      <div class="home-buttons">
-
-
-        <div
-          class="home-link"
-          onclick="showView('whole-school')"
-        >
-
-          <strong>
-            All School Coverage Schedule
-          </strong>
-
-          <span>
-            View all classrooms <strong>direct care</strong> coverage.
-          </span>
-
-        </div>
+      <div class="home-panel-content">
 
 
-        <div
-          class="home-link"
-          onclick="showView('classroom')"
-        >
+        <!-- TODAY'S UPDATES -->
 
-          <strong>
-            Individual Classroom Schedules
-          </strong>
+        <div class="home-updates">
 
-          <span>
-            View Spruce, Birch, Maple or Seedlings <strong>direct care</strong> coverage.
-          </span>
+          <div class="home-updates-title">
+            Today's Updates
+          </div>
+
+          <div class="updates">
+
+            <div class="no-updates">
+              No schedule changes posted for today.
+            </div>
+
+          </div>
 
         </div>
 
 
-        <div
-          class="home-link"
-          onclick="showView('daily')"
-        >
+        <!-- SCHEDULE BUTTONS -->
 
-          <strong>
-            Individual Daily Schedules
-          </strong>
+        <div class="home-buttons">
 
-          <span>
-            View one person's entire day, including time outside of a classroom. 
-          </span>
+          <div
+            class="home-link"
+            onclick="showView('whole-school')"
+          >
+
+            <strong>
+              All School Coverage Schedule
+            </strong>
+
+            <span>
+              View all classrooms <strong>direct care</strong> coverage.
+            </span>
+
+          </div>
+
+
+          <div
+            class="home-link"
+            onclick="showView('classroom')"
+          >
+
+            <strong>
+              Individual Classroom Schedules
+            </strong>
+
+            <span>
+              View Spruce, Birch, Maple or Seedlings
+              <strong>direct care</strong> coverage.
+            </span>
+
+          </div>
+
+
+          <div
+            class="home-link"
+            onclick="showView('daily')"
+          >
+
+            <strong>
+              Individual Daily Schedules
+            </strong>
+
+            <span>
+              View one person's entire day.
+            </span>
+
+          </div>
+
+
+          <div
+            class="home-link"
+            onclick="showView('weekly')"
+          >
+
+            <strong>
+              Individual Weekly Schedules
+            </strong>
+
+            <span>
+              View one person's full week.
+            </span>
+
+          </div>
 
         </div>
-
-
-        <div
-          class="home-link"
-          onclick="showView('weekly')"
-        >
-
-          <strong>
-            Individual Weekly Schedules
-          </strong>
-
-          <span>
-            View one person's full week, including time outside of a classroom.
-          </span>
-
-        </div>
-
 
       </div>
 
     </div>
 
 
-    <!-- QUICK LINKS -->
+    <!-- =========================
+         QUICK LINKS
+    ========================== -->
 
-    <div class="card">
+    <div
+      class="home-panel quick-links-panel"
+      id="quick-links-card"
+    >
 
-      <h2 class="section-title">
+      <div class="home-panel-header">
         Quick Links
-      </h2>
+      </div>
+
+      <div class="home-panel-content">
+
+        <div class="quick-links">
 
 
-      <div class="quick-links">
+          <a
+            class="quick-link"
+            target="_blank"
+            href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQsp6zsriTeVRmNkxeuoiTbp_4hezPE-8J05hML6SyH08RKaY8-UeDLtotYc5x4Z02irWKSDYd__44r/pubhtml?gid=0&single=true"
+          >
+            School Calendar — Family Version
+          </a>
 
 
-        <a
-          class="quick-link"
-          target="_blank"
-          href="https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vQsp6zsriTeVRmNkxeuoiTbp_4hezPE-8J05hML6SyH08RKaY8-UeDLtotYc5x4Z02irWKSDYd__44r/pubhtml?gid=0&single=true"
-        >
-          School Calendar
-          <br>
-          Family Version
-        </a>
+          <a
+            class="quick-link"
+            target="_blank"
+            href="https://calendar.google.com/calendar/u/2?cid=Y19hMzY5ODMxNjE5ODJmYWI1OTQwZGEyODg0NmJjMzdiZjRjNmU0ZDk0MzllNDdmYTM1NDM2MDVhNDgwZDI5ZDM0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+          >
+            School Calendar — Teacher Version
+          </a>
 
 
-        <a
-          class="quick-link"
-          target="_blank"
-          href="https://calendar.google.com/calendar/u/2?cid=Y19hMzY5ODMxNjE5ODJmYWI1OTQwZGEyODg0NmJjMzdiZjRjNmU0ZDk0MzllNDdmYTM1NDM2MDVhNDgwZDI5ZDM0QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
-        >
-          School Calendar
-          <br>
-          Teacher Version
-        </a>
+          <a
+            class="quick-link"
+            target="_blank"
+            href="https://calendar.google.com/calendar/u/2?cid=Y18yNDZhMDk4MzNhMGFlZjY3YjM2YTEzMzBkNGI4ZjlmMmNmNjlkZTk4YTdmOWQxY2Q0YTM4NjkxZmQ4OWE1N2ZmQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+          >
+            Staffing Calendar
+          </a>
 
 
-        <a
-          class="quick-link"
-          target="_blank"
-          href="https://calendar.google.com/calendar/u/2?cid=Y18yNDZhMDk4MzNhMGFlZjY3YjM2YTEzMzBkNGI4ZjlmMmNmNjlkZTk4YTdmOWQxY2Q0YTM4NjkxZmQ4OWE1N2ZmQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
-        >
-          Staffing Calendar
-        </a>
+          <a
+            class="quick-link"
+            target="_blank"
+            href="https://lizastratton.github.io/pine-grove-snack-signup/"
+          >
+            Snack Calendar
+          </a>
 
 
-        <a
-          class="quick-link"
-          target="_blank"
-          href="https://lizastratton.github.io/pine-grove-snack-signup/"
-        >
-          Snack Calendar
-        </a>
+          <a
+            class="quick-link"
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdEut-bGDiHXirzYaXbVArHm4P2eZe1ESHd0YWPUtLLAFCwww/viewform?usp=sharing&ouid=109174049201169163512"
+          >
+            Wish List Item Request
+          </a>
 
 
-        <a
-          class="quick-link"
-          target="_blank"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSdEut-bGDiHXirzYaXbVArHm4P2eZe1ESHd0YWPUtLLAFCwww/viewform?usp=sharing&ouid=109174049201169163512"
-        >
-          Wish List Item Request
-        </a>
+          <a
+            class="quick-link"
+            target="_blank"
+            href="https://app.gusto.com/employee/expenses/me"
+          >
+            Mileage &amp; Expense Reimbursement
+          </a>
 
 
-        <a
-          class="quick-link"
-          target="_blank"
-          href="https://app.gusto.com/employee/expenses/me"
-        >
-          Mileage & Expense Reimbursement
-        </a>
+          <div
+            class="quick-link"
+            id="newsletter-link"
+          >
+            Monthly Newsletter
+          </div>
 
 
-        <!--
-        We will connect this to the current newsletter
-        link in Settings next.
-        -->
-
-        <div
-          class="quick-link"
-          id="newsletter-link"
-        >
-          Monthly Newsletter
         </div>
-
 
       </div>
 
     </div>
-
 
   </div>
 
 </section>
-
 
 <!-- ======================================================
      SCHEDULES HOME
