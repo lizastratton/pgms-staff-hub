@@ -2387,6 +2387,8 @@ body {
 const CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4807ECz35YOfslHd7b3Lya0mIG7qqbzDzfpMuV2JCwMkL_bkVujxZ5DWdj_YLMDoT6BHYWU97giNn/pub?gid=1831595603&single=true&output=csv";
 
+const QUICK_LINKS_CSV_URL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vQJgCqixURrTSMtxfmGjld8btfvrJr72ZbrznCeHNhBSDE8JcPL_CZ84WjRBbcddCtXwy0UIZx2C5FK/pub?output=csv";
 
 const DAYS = [
   "Monday",
@@ -2682,6 +2684,73 @@ function parseCSV(text) {
 
 }
 
+  /* =========================================================
+   QUICK LINKS
+========================================================= */
+
+async function loadQuickLinks() {
+
+  const container = document.getElementById("quick-links-container");
+
+  try {
+
+    const response = await fetch(QUICK_LINKS_CSV_URL, {
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error("Could not load Quick Links.");
+    }
+
+    const text = await response.text();
+
+    const links = parseCSV(text)
+      .filter(item =>
+        String(item["Active"] || "")
+          .trim()
+          .toLowerCase() === "yes"
+      )
+      .sort((a, b) =>
+        (Number(a["Order"]) || 999) -
+        (Number(b["Order"]) || 999)
+      );
+
+    container.innerHTML = "";
+
+    links.forEach(item => {
+
+      const name = String(item["Display Name"] || "").trim();
+      const url = String(item["Link"] || "").trim();
+
+      if (!name || !url) return;
+
+      const link = document.createElement("a");
+
+      link.className = "quick-link";
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.href = url;
+      link.textContent = name;
+
+      container.appendChild(link);
+
+    });
+
+    if (container.children.length === 0) {
+      container.innerHTML =
+        '<div class="quick-link">No links available.</div>';
+    }
+
+  } catch (error) {
+
+    console.error("Could not load Quick Links:", error);
+
+    container.innerHTML =
+      '<div class="quick-link">Quick Links could not be loaded.</div>';
+
+  }
+
+}
 
 /* =========================================================
    TIME
@@ -4776,6 +4845,7 @@ document
 
 
 loadSchedule();
+loadQuickLinks();
 
 </script>
 
