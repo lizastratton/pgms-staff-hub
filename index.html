@@ -1277,76 +1277,258 @@ select {
    RESPONSIVE
 ========================================================= */
 
-@media (max-width:950px) {
-
-  .home-grid,
-  .school-grid {
-
-    grid-template-columns:1fr;
-
-  }
-
-  .after-grid {
-
-    grid-template-columns:
-      1fr
-      1fr;
-
-  }
-
-}
-
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width:700px) {
 
+  /* ---------- GENERAL PAGE ---------- */
+
   .app {
-
     padding:10px;
-
   }
 
+
+  /* ---------- HEADER ---------- */
+
   .site-header {
+    padding:18px;
+    border-radius:10px;
+  }
 
-    align-items:flex-start;
+  .site-title {
+    font-size:27px;
+  }
 
+  .site-subtitle {
+    font-size:11px;
   }
 
   .logo {
-
-    width:150px;
-
+    width:120px;
+    max-width:38vw;
   }
 
-  .home-buttons,
-  .quick-links {
+  .header-nav {
+    margin-top:12px;
+  }
 
+  .header-nav-button {
+    padding:4px 8px;
+    font-size:10px;
+  }
+
+
+  /* ---------- HOME PAGE ---------- */
+
+  .home-grid {
     grid-template-columns:1fr;
-
   }
 
-  .week-grid {
-
+  .home-buttons {
     grid-template-columns:1fr;
-
   }
 
-  .early-grid,
-  .after-grid {
 
-    grid-template-columns:1fr;
+  /* =====================================================
+     WHOLE SCHOOL — PRIMARY
+     Keep classrooms readable and allow horizontal swipe
+  ===================================================== */
 
+  #primary-content {
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
+    padding-bottom:8px;
+
+    scrollbar-width:thin;
   }
 
-  .primary-layout {
 
+  /*
+    Do NOT squeeze all four columns onto the phone.
+
+    Activity = 82px
+    Each classroom = 260px
+  */
+
+  #primary-content .primary-layout {
     grid-template-columns:
-      80px
-      repeat(3,1fr);
+      82px
+      260px
+      260px
+      260px;
 
+    width:862px;
+    min-width:862px;
+  }
+
+
+  /* ---------- STICKY ACTIVITY COLUMN ---------- */
+
+  #primary-content .activity-header {
+    position:sticky;
+    left:0;
+
+    z-index:20;
+
+    background:#edf0ec;
+
+    box-shadow:
+      3px 0 5px
+      rgba(0,0,0,.05);
+  }
+
+
+  #primary-content .activity-track {
+    position:sticky;
+    left:0;
+
+    z-index:10;
+
+    background:#f7f6f2;
+
+    box-shadow:
+      3px 0 5px
+      rgba(0,0,0,.05);
+  }
+
+
+  /* ---------- ACTIVITY LABELS ---------- */
+
+  #primary-content .activity-block {
+    padding:5px 3px;
+
+    text-align:center;
+  }
+
+  #primary-content .activity-name {
+    font-size:10px;
+    line-height:1.15;
+  }
+
+  #primary-content .activity-time {
+    margin-top:3px;
+
+    font-size:7px;
+    line-height:1.15;
+  }
+
+
+  /* ---------- CLASSROOM HEADERS ---------- */
+
+  #primary-content .room-header {
+    font-size:12px;
+    font-weight:800;
+
+    padding:8px 4px;
+  }
+
+
+  /* ---------- STAFF BLOCKS ---------- */
+
+  #primary-content .staff-block {
+    padding:5px 3px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+  }
+
+
+  /*
+    Most important mobile fix:
+    don't break names in the middle of words.
+  */
+
+  #primary-content .staff-name {
+    font-size:11px;
+    line-height:1.1;
+
+    word-break:normal;
+    overflow-wrap:normal;
+    hyphens:none;
+
+    white-space:normal;
+  }
+
+
+  #primary-content .staff-time {
+    margin-top:3px;
+
+    font-size:8px;
+    line-height:1.15;
+
+    white-space:normal;
+  }
+
+
+  /* =====================================================
+     SEEDLINGS / OTHER SCHEDULE CONTENT
+  ===================================================== */
+
+  .main-grid {
+    grid-template-columns:1fr;
+  }
+
+  .care-grid {
+    grid-template-columns:1fr;
+  }
+
+  .aftercare-grid {
+    grid-template-columns:1fr;
+  }
+
+  .weekly-grid {
+    grid-template-columns:1fr;
+  }
+
+
+  /* ---------- INDIVIDUAL DAILY ---------- */
+
+  .daily-single {
+    max-width:100%;
+  }
+
+
+  /* ---------- CARDS ---------- */
+
+  .card {
+    padding:12px;
+  }
+
+  .schedule-card {
+    padding:12px;
+  }
+
+
+  /* ---------- CONTROLS ---------- */
+
+  .controls {
+    gap:7px;
+  }
+
+  select {
+    max-width:100%;
+  }
+
+
+  /* ---------- FOOTER ---------- */
+
+  .portal-footer {
+    margin-top:12px;
   }
 
 }
-
 
 /* =========================================================
    PRINT
