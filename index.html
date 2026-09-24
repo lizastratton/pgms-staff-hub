@@ -1234,70 +1234,6 @@ select {
 
 
 /* =========================================================
-   INDIVIDUAL DAILY - COVERAGE / CHANGES
-========================================================= */
-
-.individual-daily-wrapper {
-  max-width:none;
-}
-
-.individual-schedule-columns {
-  display:grid;
-  grid-template-columns:minmax(0,1.7fr) minmax(240px,.8fr);
-  gap:12px;
-  align-items:start;
-}
-
-.individual-column-heading {
-  padding:8px 10px;
-  border:1px solid var(--line);
-  border-bottom:none;
-  border-radius:8px 8px 0 0;
-  background:#eef3ef;
-  color:var(--pine);
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.5px;
-  text-align:center;
-  text-transform:uppercase;
-}
-
-.individual-regular-column .individual-blocks {
-  border-top:1px solid var(--line);
-}
-
-.coverage-heading { background:#f4efe3; }
-
-.coverage-list {
-  min-height:100px;
-  padding:8px;
-  border:1px solid var(--line);
-  border-radius:0 0 8px 8px;
-  background:#fbfaf7;
-}
-
-.coverage-change {
-  margin-bottom:8px;
-  padding:10px;
-  border:1px solid #d8dfda;
-  border-radius:7px;
-  border-left:4px solid #6f987a;
-  background:white;
-}
-
-.coverage-change:last-child { margin-bottom:0; }
-.coverage-covered { border-left-color:#c5a868; }
-.coverage-out { border-left-color:#9d6e6e; background:#faf4f4; }
-.coverage-change-time { margin-bottom:4px; color:#6f7d73; font-size:9px; font-weight:700; }
-.coverage-change-text { color:#26352b; font-size:12px; font-weight:700; line-height:1.3; }
-.coverage-out .coverage-change-text { color:#754c4c; }
-.coverage-none { padding:18px 8px; color:#929a94; font-size:10px; text-align:center; font-style:italic; }
-
-@media (max-width:700px) {
-  .individual-schedule-columns { grid-template-columns:1fr; }
-}
-
-/* =========================================================
    WEEKLY
 ========================================================= */
 
@@ -2115,6 +2051,216 @@ body {
   }
 }
 
+
+
+/* ===== HOME DASHBOARD + INTEGRATED DAILY COVERAGE ===== */
+.home-dashboard {
+  display:grid;
+  gap:14px;
+}
+
+.home-bottom-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);
+  gap:14px;
+  align-items:start;
+}
+
+.home-date-label {
+  margin:0 0 8px 2px;
+  color:#66766c;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.7px;
+}
+
+#today-updates.today-updates-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+
+#today-updates .today-event-card {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:3px;
+  min-height:58px;
+  padding:9px 10px;
+  border:1px solid #d8dfda;
+  border-left:4px solid #7da087;
+  border-radius:8px;
+  background:#fff;
+}
+
+#today-updates .today-event-card:last-child {
+  border-bottom:1px solid #d8dfda;
+}
+
+#today-updates .calendar-event-time {
+  font-size:8px;
+  line-height:1.2;
+}
+
+#today-updates .calendar-event-title {
+  font-size:10.5px;
+  line-height:1.25;
+}
+
+#today-updates .no-updates {
+  grid-column:1 / -1;
+  padding:10px;
+  border:1px solid #d8dfda;
+  border-radius:8px;
+  background:#fff;
+}
+
+.home-coming-panel #coming-up {
+  width:100%;
+}
+
+.home-coming-panel .coming-up-day {
+  padding:10px;
+}
+
+.home-coming-panel .coming-up-day-heading {
+  margin:-10px -10px 9px;
+}
+
+.home-coming-panel .coming-up-event-title {
+  font-size:10.5px;
+}
+
+.home-coming-panel .coming-up-event-time {
+  font-size:8.5px;
+}
+
+.individual-daily-wrapper {
+  max-width:100%;
+}
+
+.daily-out-banner {
+  padding:8px 12px;
+  background:#f4e1e9;
+  border:1px solid #d9bdc9;
+  border-top:0;
+  color:#704c5b;
+  font-size:11px;
+  font-weight:900;
+  text-align:center;
+  letter-spacing:.7px;
+}
+
+.daily-timeline {
+  display:grid;
+  grid-template-columns:120px minmax(220px,1fr) minmax(220px,1fr);
+  border:1px solid var(--line);
+  border-top:0;
+  border-radius:0 0 8px 8px;
+  overflow:hidden;
+}
+
+.daily-timeline-head {
+  padding:9px 10px;
+  background:#edf2ee;
+  color:var(--pine);
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  font-size:11px;
+  font-weight:800;
+}
+
+.daily-timeline-head:nth-child(3) {
+  border-right:0;
+}
+
+.daily-time-cell,
+.daily-regular-cell,
+.daily-change-cell {
+  min-height:50px;
+  padding:9px 10px;
+  display:flex;
+  align-items:center;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  font-size:11px;
+  line-height:1.3;
+}
+
+.daily-time-cell {
+  justify-content:flex-end;
+  color:#69766e;
+  font-size:9px;
+  font-weight:700;
+  white-space:nowrap;
+  background:#fafbf9;
+}
+
+.daily-change-cell {
+  border-right:0;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  gap:5px;
+  background:#f7faf8;
+}
+
+.daily-change-item {
+  padding:6px 8px;
+  border-left:4px solid #789879;
+  border-radius:5px;
+  background:#e8f1ea;
+  color:#244231;
+  font-weight:800;
+}
+
+.daily-empty-cell {
+  color:#a0a7a2;
+  background:#fafbf9;
+  font-weight:400;
+}
+
+.daily-timeline > div:nth-last-child(-n+3) {
+  border-bottom:0;
+}
+
+@media (max-width:950px) {
+  #today-updates.today-updates-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .home-bottom-grid {
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:700px) {
+  #today-updates.today-updates-grid {
+    grid-template-columns:1fr;
+  }
+
+  .home-coming-panel .home-panel-content {
+    overflow-x:auto;
+  }
+
+  .home-coming-panel .coming-up-grid {
+    grid-template-columns:repeat(5,minmax(145px,1fr));
+    min-width:725px;
+  }
+
+  .daily-timeline {
+    grid-template-columns:88px minmax(150px,1fr) minmax(150px,1fr);
+    min-width:520px;
+  }
+
+  .individual-daily-wrapper {
+    overflow-x:auto;
+  }
+}
+
 </style>
 </head>
 
@@ -2135,7 +2281,7 @@ body {
     <nav class="header-nav">
       <button class="nav-button active" data-view="home">Home</button>
       <button class="nav-button" data-view="schedules">Schedules</button>
-      <button class="nav-button" type="button" onclick="showView('home'); setTimeout(() => document.getElementById('quick-links-card')?.scrollIntoView({behavior:'smooth'}),80)">Quick Links</button>
+      <button class="nav-button" type="button" data-scroll="quick-links-card">Quick Links</button>
     </nav>
   </div>
   <img src="logo.png" alt="Pine Grove Montessori School" class="logo">
@@ -2146,57 +2292,51 @@ body {
 ====================================================== -->
 
 <section id="home" class="view active">
-  <div class="home-grid">
-    <div class="home-panel">
-      <div class="home-panel-header">Schedules</div>
+
+  <div class="home-dashboard">
+
+    <div class="home-panel home-today-panel">
+      <div class="home-panel-header">Today</div>
       <div class="home-panel-content">
-        <div class="home-updates">
-  <div class="home-updates-title">Today's Updates</div>
-
-  <div class="updates" id="today-updates">
-    <div class="no-updates">Loading today's events…</div>
-  </div>
-</div>
-
-        <div class="home-updates">
-  <div class="home-updates-title">Coming Up</div>
-
-  <div class="updates" id="coming-up">
-    <div class="no-updates">Loading upcoming events…</div>
-  </div>
-</div>
-        
-        <div class="home-buttons">
-          <div class="home-link" onclick="showView('whole-school')"><strong>All School Coverage Schedule</strong><span>View all classrooms and direct care coverage.</span></div>
-          <div class="home-link" onclick="showView('classroom')"><strong>Individual Classroom Schedules</strong><span>View Spruce, Birch, Maple or Seedlings direct care coverage.</span></div>
-          <div class="home-link" onclick="showView('daily')"><strong>Individual Daily Schedules</strong><span>View one person's entire day, including time outside a classroom.</span></div>
-          <div class="home-link" onclick="showView('weekly')"><strong>Individual Weekly</strong><span>View one staff member's full week.</span></div>
+        <div class="home-date-label" id="today-date-label"></div>
+        <div class="updates today-updates-grid" id="today-updates">
+          <div class="no-updates">Loading today's events…</div>
         </div>
       </div>
     </div>
-   <div class="home-panel" id="quick-links-card">
 
-  <div class="home-panel-header">
-    Quick Links
-  </div>
+    <div class="home-panel home-coming-panel">
+      <div class="home-panel-header">Coming Up</div>
+      <div class="home-panel-content">
+        <div class="updates" id="coming-up">
+          <div class="no-updates">Loading upcoming events…</div>
+        </div>
+      </div>
+    </div>
 
-  <div class="home-panel-content">
-
-    <div
-      class="quick-links"
-      id="quick-links-container"
-    >
-
-      <div class="quick-link">
-        Loading links…
+    <div class="home-bottom-grid">
+      <div class="home-panel">
+        <div class="home-panel-header">Schedules</div>
+        <div class="home-panel-content">
+          <div class="home-buttons">
+            <div class="home-link" onclick="showView('whole-school')"><strong>All School Coverage Schedule</strong><span>View all classrooms and direct care coverage.</span></div>
+            <div class="home-link" onclick="showView('classroom')"><strong>Individual Classroom Schedules</strong><span>View Spruce, Birch, Maple or Seedlings direct care coverage.</span></div>
+            <div class="home-link" onclick="showView('daily')"><strong>Individual Daily Schedules</strong><span>View one person's entire day, including coverage changes.</span></div>
+            <div class="home-link" onclick="showView('weekly')"><strong>Individual Weekly</strong><span>View one staff member's full week.</span></div>
+          </div>
+        </div>
       </div>
 
+      <div class="home-panel" id="quick-links-card">
+        <div class="home-panel-header">Quick Links</div>
+        <div class="home-panel-content">
+          <div class="quick-links" id="quick-links-container">
+            <div class="quick-link">Loading links…</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-  </div>
-
-</div>
-    </div>
   </div>
 </section>
 
@@ -2747,9 +2887,20 @@ document
       "click",
       () => {
 
-        showView(
-          button.dataset.view
-        );
+        if (button.dataset.view) {
+          showView(button.dataset.view);
+          return;
+        }
+
+        if (button.dataset.scroll) {
+          showView("home");
+          setTimeout(() => {
+            document.getElementById(button.dataset.scroll)?.scrollIntoView({
+              behavior:"smooth",
+              block:"start"
+            });
+          }, 80);
+        }
 
       }
     );
@@ -3000,7 +3151,6 @@ async function loadCalendarUpdates() {
 
     const events = data.events || [];
     calendarEvents = events;
-    renderIndividualDaily();
 
     /*
      * Get today's date in local time.
@@ -3017,6 +3167,11 @@ async function loadCalendarUpdates() {
       events.filter(event =>
         event.date === today
       );
+
+    const todayDateLabel = document.getElementById("today-date-label");
+    if (todayDateLabel) {
+      todayDateLabel.textContent = formatCalendarDate(today);
+    }
 
   /*
  * Build the next five weekdays.
@@ -3082,14 +3237,18 @@ const upcomingEvents =
         const item =
           document.createElement("div");
 
-        item.className = "calendar-event";
+        item.className = "calendar-event today-event-card";
 
         let time = "";
 
         if (!event.allDay && event.startTime) {
+          const timeLabel = event.endTime
+            ? event.startTime + " – " + event.endTime
+            : event.startTime;
+
           time =
             '<span class="calendar-event-time">' +
-            event.startTime +
+            escapeHTML(timeLabel) +
             '</span>';
         }
 
@@ -3343,6 +3502,10 @@ upcomingDates.forEach(date => {
 comingContainer.appendChild(
   comingGrid
 );
+
+if (document.getElementById("daily-staff")?.value) {
+  renderIndividualDaily();
+}
 
 
 
@@ -4946,140 +5109,201 @@ function getShiftRange(
    INDIVIDUAL DAILY
 ========================================================= */
 
+function normalizeStaffName(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+}
+
+function staffNamesMatch(scheduleName, calendarName) {
+  const a = normalizeStaffName(scheduleName);
+  const b = normalizeStaffName(calendarName);
+
+  if (!a || !b) return false;
+  if (a === b) return true;
+
+  return a.split(" ")[0] === b.split(" ")[0];
+}
+
+function calendarTimeToMinutes(value) {
+  if (!value) return null;
+
+  const match = String(value).match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!match) return null;
+
+  let hours = Number(match[1]);
+  const minutes = Number(match[2]);
+  const period = match[3].toUpperCase();
+
+  if (period === "PM" && hours !== 12) hours += 12;
+  if (period === "AM" && hours === 12) hours = 0;
+
+  return hours * 60 + minutes;
+}
+
+function selectedDayDateString(dayName) {
+  const now = new Date();
+  const targetDay = DAYS.indexOf(dayName) + 1;
+
+  if (targetDay < 1) return "";
+
+  const date = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + (targetDay - now.getDay())
+  );
+
+  return date.getFullYear() + "-" +
+    String(date.getMonth() + 1).padStart(2, "0") + "-" +
+    String(date.getDate()).padStart(2, "0");
+}
+
+function parseCoverageEvent(event) {
+  const title = String(event.title || "").trim();
+
+  const outMatch = title.match(/^(.+?)\s+out\s*$/i);
+  if (outMatch) {
+    return {
+      type:"out",
+      person:outMatch[1].trim(),
+      start:null,
+      end:null
+    };
+  }
+
+  const coverMatch = title.match(
+    /^(.+?)\s+(?:to\s+)?cover(?:ing)?(?:\s+for)?\s+(.+?)\s*$/i
+  );
+
+  if (!coverMatch) return null;
+
+  return {
+    type:"coverage",
+    covering:coverMatch[1].trim(),
+    covered:coverMatch[2].trim(),
+    start:calendarTimeToMinutes(event.startTime),
+    end:calendarTimeToMinutes(event.endTime)
+  };
+}
+
 function renderIndividualDaily() {
 
   const staff = document.getElementById("daily-staff").value;
   const day = document.getElementById("daily-day").value;
   const content = document.getElementById("daily-content");
   const schedule = getStaffSchedule(staff, day);
+  const dateString = selectedDayDateString(day);
 
-  if (!schedule.length) {
+  const dayCalendarEvents = calendarEvents
+    .filter(event => event.date === dateString)
+    .map(parseCoverageEvent)
+    .filter(Boolean);
+
+  const isOut = dayCalendarEvents.some(item =>
+    item.type === "out" && staffNamesMatch(staff, item.person)
+  );
+
+  const staffCoverage = dayCalendarEvents
+    .filter(item =>
+      item.type === "coverage" &&
+      (staffNamesMatch(staff, item.covering) || staffNamesMatch(staff, item.covered)) &&
+      item.start !== null &&
+      item.end !== null &&
+      item.end > item.start
+    );
+
+  if (!schedule.length && !staffCoverage.length && !isOut) {
     content.innerHTML = '<div class="empty">No schedule for this day.</div>';
     return;
   }
 
   const shift = getShiftRange(schedule);
+  const boundaries = new Set();
 
-  /* Find the date for the selected weekday in the current week. */
-  const now = new Date();
-  const selectedDayNumber = DAYS.indexOf(day) + 1;
-  const difference = selectedDayNumber - now.getDay();
-  const selectedDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + difference);
-  const selectedDateString =
-    selectedDate.getFullYear() + "-" +
-    String(selectedDate.getMonth() + 1).padStart(2, "0") + "-" +
-    String(selectedDate.getDate()).padStart(2, "0");
-
-  const dayCalendarEvents = calendarEvents.filter(event => event.date === selectedDateString);
-  const coverageChanges = [];
-
-  dayCalendarEvents.forEach(event => {
-    const title = String(event.title || "").trim();
-
-    const outMatch = title.match(/^(.+?)\s+out\b/i);
-    if (outMatch) {
-      const personOut = outMatch[1].trim();
-      if (personOut.toLowerCase() === staff.toLowerCase()) {
-        coverageChanges.push({
-          type:"out",
-          startTime:event.startTime || "",
-          endTime:event.endTime || "",
-          allDay:event.allDay,
-          text:event.allDay ? "OUT TODAY" : "OUT"
-        });
-      }
-      return;
-    }
-
-    const coverMatch = title.match(/^(.+?)\s+(?:to\s+)?cover(?:ing)?(?:\s+for)?\s+(.+)$/i);
-    if (!coverMatch) return;
-
-    const coveringPerson = coverMatch[1].trim();
-    const coveredPerson = coverMatch[2].trim();
-
-    if (coveringPerson.toLowerCase() === staff.toLowerCase()) {
-      coverageChanges.push({
-        type:"covering",
-        startTime:event.startTime || "",
-        endTime:event.endTime || "",
-        allDay:event.allDay,
-        text:"Cover for " + coveredPerson
-      });
-    }
-
-    if (coveredPerson.toLowerCase() === staff.toLowerCase()) {
-      coverageChanges.push({
-        type:"covered",
-        startTime:event.startTime || "",
-        endTime:event.endTime || "",
-        allDay:event.allDay,
-        text:"Covered by " + coveringPerson
-      });
-    }
+  schedule.forEach(item => {
+    boundaries.add(item.start);
+    boundaries.add(item.end);
   });
 
-  function timeToMinutes(time) {
-    if (!time) return -1;
-    const match = time.match(/(\d+):(\d+)\s*(AM|PM)/i);
-    if (!match) return 0;
-    let hours = Number(match[1]);
-    const minutes = Number(match[2]);
-    const period = match[3].toUpperCase();
-    if (period === "PM" && hours !== 12) hours += 12;
-    if (period === "AM" && hours === 12) hours = 0;
-    return hours * 60 + minutes;
+  staffCoverage.forEach(item => {
+    boundaries.add(item.start);
+    boundaries.add(item.end);
+  });
+
+  const times = Array.from(boundaries).sort((a, b) => a - b);
+  const rows = [];
+
+  for (let i = 0; i < times.length - 1; i++) {
+    const start = times[i];
+    const end = times[i + 1];
+
+    const regular = schedule.find(item =>
+      item.start <= start && item.end >= end
+    );
+
+    const changes = staffCoverage.filter(item =>
+      item.start <= start && item.end >= end
+    );
+
+    if (!regular && !changes.length) continue;
+
+    rows.push({start, end, regular, changes});
   }
-
-  coverageChanges.sort((a,b) => {
-    if (a.allDay && !b.allDay) return -1;
-    if (!a.allDay && b.allDay) return 1;
-    return timeToMinutes(a.startTime) - timeToMinutes(b.startTime);
-  });
 
   let html =
     '<div class="individual-day-title">' +
-      '<strong>' + day + '</strong>' +
-      '<span>' + shift + '</span>' +
-    '</div>' +
-    '<div class="individual-schedule-columns">' +
-      '<div class="individual-regular-column">' +
-        '<div class="individual-column-heading">Regular Schedule</div>' +
-        '<div class="individual-blocks">';
+      '<strong>' + escapeHTML(formatCalendarDate(dateString)) + '</strong>' +
+      '<span>' + escapeHTML(shift || (isOut ? "Out Today" : "")) + '</span>' +
+    '</div>';
 
-  schedule.forEach(item => {
-    html +=
-      '<div class="individual-assignment ' + assignmentClass(item.assignment) + '">' +
-        '<div class="individual-assignment-name">' + item.assignment + '</div>' +
-        '<div class="individual-assignment-time">' +
-          minutesToLabel(item.start) + ' – ' + minutesToLabel(item.end) +
-        '</div>' +
-      '</div>';
-  });
-
-  html +=
-        '</div>' +
-      '</div>' +
-      '<div class="individual-coverage-column">' +
-        '<div class="individual-column-heading coverage-heading">Coverage / Changes</div>' +
-        '<div class="coverage-list">';
-
-  if (!coverageChanges.length) {
-    html += '<div class="coverage-none">No changes</div>';
-  } else {
-    coverageChanges.forEach(change => {
-      let timeText = "";
-      if (!change.allDay && change.startTime) {
-        timeText = change.startTime + (change.endTime ? ' – ' + change.endTime : '');
-      }
-      html +=
-        '<div class="coverage-change coverage-' + change.type + '">' +
-          (timeText ? '<div class="coverage-change-time">' + timeText + '</div>' : '') +
-          '<div class="coverage-change-text">' + change.text + '</div>' +
-        '</div>';
-    });
+  if (isOut) {
+    html += '<div class="daily-out-banner">OUT TODAY</div>';
   }
 
-  html += '</div></div></div>';
+  html +=
+    '<div class="daily-timeline">' +
+      '<div class="daily-timeline-head daily-time-head">Time</div>' +
+      '<div class="daily-timeline-head">Regular Schedule</div>' +
+      '<div class="daily-timeline-head">Coverage / Changes</div>';
+
+  rows.forEach(row => {
+    const timeLabel = minutesToLabel(row.start) + " – " + minutesToLabel(row.end);
+
+    html +=
+      '<div class="daily-time-cell">' + escapeHTML(timeLabel) + '</div>';
+
+    if (row.regular) {
+      html +=
+        '<div class="daily-regular-cell ' + assignmentClass(row.regular.assignment) + '">' +
+          '<strong>' + escapeHTML(row.regular.assignment) + '</strong>' +
+        '</div>';
+    } else {
+      html += '<div class="daily-regular-cell daily-empty-cell">—</div>';
+    }
+
+    if (row.changes.length) {
+      html += '<div class="daily-change-cell">';
+
+      row.changes.forEach(change => {
+        let label = "";
+
+        if (staffNamesMatch(staff, change.covering)) {
+          label = "Cover for " + change.covered;
+        } else {
+          label = "Covered by " + change.covering;
+        }
+
+        html += '<div class="daily-change-item">' + escapeHTML(label) + '</div>';
+      });
+
+      html += '</div>';
+    } else {
+      html += '<div class="daily-change-cell daily-empty-cell">—</div>';
+    }
+  });
+
+  html += '</div>';
   content.innerHTML = html;
 }
 
