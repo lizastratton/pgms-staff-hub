@@ -399,6 +399,55 @@ a {
 
 }
 
+  /* Calendar events */
+
+#today-updates,
+#coming-up {
+  display:block;
+}
+
+.calendar-event {
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  padding:6px 2px;
+  border-bottom:1px solid #e7ebe8;
+  font-size:11px;
+  line-height:1.35;
+}
+
+.calendar-event:last-child {
+  border-bottom:none;
+}
+
+.calendar-event-time {
+  flex:0 0 auto;
+  color:#6f7d73;
+  font-size:9px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.calendar-event-title {
+  color:#26352b;
+  font-weight:600;
+}
+
+.calendar-date-heading {
+  margin:10px 0 3px;
+  padding-top:7px;
+  border-top:1px solid #d8dfda;
+  color:#486052;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.7px;
+}
+
+.calendar-date-heading:first-child {
+  margin-top:0;
+  padding-top:0;
+  border-top:none;
+}
 
 /* =========================================================
    CONTROLS
@@ -1953,9 +2002,21 @@ body {
       <div class="home-panel-header">Schedules</div>
       <div class="home-panel-content">
         <div class="home-updates">
-          <div class="home-updates-title">Today's Updates</div>
-          <div class="updates"><div class="no-updates">No schedule changes posted for today.</div></div>
-        </div>
+  <div class="home-updates-title">Today's Updates</div>
+
+  <div class="updates" id="today-updates">
+    <div class="no-updates">Loading today's events…</div>
+  </div>
+</div>
+
+        <div class="home-updates">
+  <div class="home-updates-title">Coming Up</div>
+
+  <div class="updates" id="coming-up">
+    <div class="no-updates">Loading upcoming events…</div>
+  </div>
+</div>
+        
         <div class="home-buttons">
           <div class="home-link" onclick="showView('whole-school')"><strong>All School Coverage Schedule</strong><span>View all classrooms and direct care coverage.</span></div>
           <div class="home-link" onclick="showView('classroom')"><strong>Individual Classroom Schedules</strong><span>View Spruce, Birch, Maple or Seedlings direct care coverage.</span></div>
@@ -2390,6 +2451,9 @@ const CSV_URL =
 const QUICK_LINKS_CSV_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vQJgCqixURrTSMtxfmGjld8btfvrJr72ZbrznCeHNhBSDE8JcPL_CZ84WjRBbcddCtXwy0UIZx2C5FK/pub?output=csv";
 
+const CALENDAR_FEED_URL =
+"https://script.google.com/macros/s/AKfycbwDto6Ypvgl0n0Y8JSp85an1I-6y_y4NuDOZbM-MDsKlSo_JHps8GuTPPr0i1NXzbR5/exec";
+  
 const DAYS = [
   "Monday",
   "Tuesday",
@@ -2749,6 +2813,238 @@ async function loadQuickLinks() {
       '<div class="quick-link">Quick Links could not be loaded.</div>';
 
   }
+
+}
+
+  /* =========================================================
+   CALENDAR UPDATES
+========================================================= */
+
+async function loadCalendarUpdates() {
+
+  const todayContainer =
+    document.getElementById("today-updates");
+
+  const comingContainer =
+    document.getElementById("coming-up");
+
+  try {
+
+    const response =
+      await fetch(CALENDAR_FEED_URL, {
+        cache: "no-store"
+      });
+
+    if (!response.ok) {
+      throw new Error("Could not load calendar events.");
+    }
+
+    const data = await response.json();
+
+    if (!data.success) {
+      throw new Error(
+        data.error || "Could not load calendar events."
+      );
+    }
+
+    const events = data.events || [];
+
+    /*
+     * Get today's date in local time.
+     */
+    const now = new Date();
+
+    const today =
+      now.getFullYear() + "-" +
+      String(now.getMonth() + 1).padStart(2, "0") + "-" +
+      String(now.getDate()).padStart(2, "0");
+
+
+    const todayEvents =
+      events.filter(event =>
+        event.date === today
+      );
+
+    const upcomingEvents =
+      events.filter(event =>
+        event.date > today
+      );
+
+
+    /* -------------------------
+       TODAY'S UPDATES
+    ------------------------- */
+
+    todayContainer.innerHTML = "";
+
+    if (todayEvents.length === 0) {
+
+      todayContainer.innerHTML =
+        '<div class="no-updates">No events today.</div>';
+
+    } else {
+
+      todayEvents.forEach(event => {
+
+        const item =
+          document.createElement("div");
+
+        item.className = "calendar-event";
+
+        let time = "";
+
+        if (!event.allDay && event.startTime) {
+          time =
+            '<span class="calendar-event-time">' +
+            event.startTime +
+            '</span>';
+        }
+
+        item.innerHTML =
+          time +
+          '<span class="calendar-event-title">' +
+          escapeHTML(event.title) +
+          '</span>';
+
+        todayContainer.appendChild(item);
+
+      });
+
+    }
+
+
+    /* -------------------------
+       COMING UP
+    ------------------------- */
+
+    comingContainer.innerHTML = "";
+
+    if (upcomingEvents.length === 0) {
+
+      comingContainer.innerHTML =
+        '<div class="no-updates">Nothing coming up in the next 7 days.</div>';
+
+      return;
+
+    }
+
+
+    const grouped = {};
+
+    upcomingEvents.forEach(event => {
+
+      if (!grouped[event.date]) {
+        grouped[event.date] = [];
+      }
+
+      grouped[event.date].push(event);
+
+    });
+
+
+    Object.keys(grouped)
+      .sort()
+      .forEach(date => {
+
+        const dateHeading =
+          document.createElement("div");
+
+        dateHeading.className =
+          "calendar-date-heading";
+
+        dateHeading.textContent =
+          formatCalendarDate(date);
+
+        comingContainer.appendChild(
+          dateHeading
+        );
+
+
+        grouped[date].forEach(event => {
+
+          const item =
+            document.createElement("div");
+
+          item.className =
+            "calendar-event";
+
+          let time = "";
+
+          if (!event.allDay && event.startTime) {
+            time =
+              '<span class="calendar-event-time">' +
+              event.startTime +
+              '</span>';
+          }
+
+          item.innerHTML =
+            time +
+            '<span class="calendar-event-title">' +
+            escapeHTML(event.title) +
+            '</span>';
+
+          comingContainer.appendChild(
+            item
+          );
+
+        });
+
+      });
+
+
+  } catch (error) {
+
+    console.error(
+      "Could not load calendar updates:",
+      error
+    );
+
+    todayContainer.innerHTML =
+      '<div class="no-updates">Calendar updates could not be loaded.</div>';
+
+    comingContainer.innerHTML =
+      '<div class="no-updates">Upcoming events could not be loaded.</div>';
+
+  }
+
+}
+
+
+function formatCalendarDate(dateString) {
+
+  const parts =
+    dateString.split("-");
+
+  const date =
+    new Date(
+      Number(parts[0]),
+      Number(parts[1]) - 1,
+      Number(parts[2])
+    );
+
+  return date
+    .toLocaleDateString(
+      "en-US",
+      {
+        weekday: "long",
+        month: "long",
+        day: "numeric"
+      }
+    )
+    .toUpperCase();
+
+}
+
+
+function escapeHTML(value) {
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    String(value || "");
+
+  return div.innerHTML;
 
 }
 
@@ -4846,6 +5142,7 @@ document
 
 loadSchedule();
 loadQuickLinks();
+loadCalendarUpdates();
 
 </script>
 
