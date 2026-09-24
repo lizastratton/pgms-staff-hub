@@ -2261,6 +2261,126 @@ body {
   }
 }
 
+
+
+/* ===== HOME LAYOUT V2: TODAY + SCHEDULES + LINKS ===== */
+.home-top-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(235px,.78fr) minmax(210px,.62fr);
+  gap:14px;
+  align-items:stretch;
+}
+
+.home-top-grid > .home-panel { min-width:0; }
+.home-today-panel .home-panel-content { padding:14px 16px 16px; }
+.home-schedules-panel .home-panel-content,
+.home-links-panel .home-panel-content { padding:10px; }
+
+#today-updates.today-updates-list {
+  display:block;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+
+.today-all-day {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-bottom:12px;
+}
+
+.today-all-day-pill {
+  padding:7px 10px;
+  border:1px solid #cdd9d0;
+  border-left:4px solid #789879;
+  border-radius:7px;
+  background:#f8faf8;
+  color:#263b2e;
+  font-size:9.5px;
+  font-weight:900;
+  line-height:1.15;
+  text-transform:uppercase;
+  letter-spacing:.25px;
+}
+
+.today-timed-list {
+  border-top:1px solid #e1e6e2;
+}
+
+.today-timed-row {
+  display:grid;
+  grid-template-columns:105px minmax(0,1fr);
+  gap:10px;
+  align-items:baseline;
+  padding:7px 2px;
+  border-bottom:1px solid #e7ebe8;
+}
+
+.today-timed-row:last-child { border-bottom:0; }
+.today-time {
+  color:#748078;
+  font-size:9px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.today-action {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:4px;
+  color:#2e3832;
+  font-size:10.5px;
+  line-height:1.3;
+}
+.today-person {
+  color:#356b4b;
+  font-weight:900;
+}
+.today-arrow {
+  color:#839087;
+  font-weight:900;
+}
+
+.home-schedules-panel .home-buttons {
+  grid-template-columns:1fr;
+  gap:6px;
+}
+.home-schedules-panel .home-link {
+  min-height:0;
+  padding:9px 27px 9px 10px;
+  border-top-width:1px;
+}
+.home-schedules-panel .home-link strong { font-size:10.5px; }
+.home-schedules-panel .home-link span { font-size:8.5px; margin-top:2px; }
+.home-schedules-panel .home-link::after { right:9px; font-size:13px; }
+
+.home-links-panel .quick-link {
+  padding-top:8px !important;
+  padding-bottom:8px !important;
+  font-size:9.5px;
+}
+
+.home-coming-panel { margin-top:0; }
+
+@media (max-width:1050px) {
+  .home-top-grid {
+    grid-template-columns:minmax(0,1.45fr) minmax(220px,.8fr);
+  }
+  .home-links-panel { grid-column:1 / -1; }
+  .home-links-panel .quick-links {
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+@media (max-width:700px) {
+  .home-top-grid { grid-template-columns:1fr; }
+  .home-links-panel { grid-column:auto; }
+  .home-links-panel .quick-links { display:flex !important; }
+  .today-timed-row { grid-template-columns:96px minmax(0,1fr); gap:7px; }
+}
+
 </style>
 </head>
 
@@ -2295,12 +2415,35 @@ body {
 
   <div class="home-dashboard">
 
-    <div class="home-panel home-today-panel">
-      <div class="home-panel-header">Today</div>
-      <div class="home-panel-content">
-        <div class="home-date-label" id="today-date-label"></div>
-        <div class="updates today-updates-grid" id="today-updates">
-          <div class="no-updates">Loading today's events…</div>
+    <div class="home-top-grid">
+      <div class="home-panel home-today-panel">
+        <div class="home-panel-header">Today</div>
+        <div class="home-panel-content">
+          <div class="home-date-label" id="today-date-label"></div>
+          <div class="updates today-updates-list" id="today-updates">
+            <div class="no-updates">Loading today's events…</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-panel home-schedules-panel">
+        <div class="home-panel-header">Schedules</div>
+        <div class="home-panel-content">
+          <div class="home-buttons">
+            <div class="home-link" onclick="showView('whole-school')"><strong>All School Coverage</strong><span>Whole school daily view</span></div>
+            <div class="home-link" onclick="showView('classroom')"><strong>Classroom Daily</strong><span>Spruce, Birch, Maple or Seedlings</span></div>
+            <div class="home-link" onclick="showView('daily')"><strong>Individual Daily</strong><span>Your day + coverage changes</span></div>
+            <div class="home-link" onclick="showView('weekly')"><strong>Individual Weekly</strong><span>Full Monday–Friday schedule</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-panel home-links-panel" id="quick-links-card">
+        <div class="home-panel-header">Quick Links</div>
+        <div class="home-panel-content">
+          <div class="quick-links" id="quick-links-container">
+            <div class="quick-link">Loading links…</div>
+          </div>
         </div>
       </div>
     </div>
@@ -2310,29 +2453,6 @@ body {
       <div class="home-panel-content">
         <div class="updates" id="coming-up">
           <div class="no-updates">Loading upcoming events…</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="home-bottom-grid">
-      <div class="home-panel">
-        <div class="home-panel-header">Schedules</div>
-        <div class="home-panel-content">
-          <div class="home-buttons">
-            <div class="home-link" onclick="showView('whole-school')"><strong>All School Coverage Schedule</strong><span>View all classrooms and direct care coverage.</span></div>
-            <div class="home-link" onclick="showView('classroom')"><strong>Individual Classroom Schedules</strong><span>View Spruce, Birch, Maple or Seedlings direct care coverage.</span></div>
-            <div class="home-link" onclick="showView('daily')"><strong>Individual Daily Schedules</strong><span>View one person's entire day, including coverage changes.</span></div>
-            <div class="home-link" onclick="showView('weekly')"><strong>Individual Weekly</strong><span>View one staff member's full week.</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="home-panel" id="quick-links-card">
-        <div class="home-panel-header">Quick Links</div>
-        <div class="home-panel-content">
-          <div class="quick-links" id="quick-links-container">
-            <div class="quick-link">Loading links…</div>
-          </div>
         </div>
       </div>
     </div>
@@ -3226,42 +3346,65 @@ const upcomingEvents =
     todayContainer.innerHTML = "";
 
     if (todayEvents.length === 0) {
-
       todayContainer.innerHTML =
         '<div class="no-updates">No events today.</div>';
-
     } else {
+      const allDayEvents = todayEvents.filter(event => event.allDay);
+      const timedEvents = todayEvents
+        .filter(event => !event.allDay)
+        .sort((a,b) => timeToMinutes(a.startTime) - timeToMinutes(b.startTime));
 
-      todayEvents.forEach(event => {
+      if (allDayEvents.length) {
+        const pills = document.createElement("div");
+        pills.className = "today-all-day";
 
-        const item =
-          document.createElement("div");
+        allDayEvents.forEach(event => {
+          const pill = document.createElement("div");
+          pill.className = "today-all-day-pill";
+          pill.textContent = event.title;
+          pills.appendChild(pill);
+        });
 
-        item.className = "calendar-event today-event-card";
+        todayContainer.appendChild(pills);
+      }
 
-        let time = "";
+      if (timedEvents.length) {
+        const list = document.createElement("div");
+        list.className = "today-timed-list";
 
-        if (!event.allDay && event.startTime) {
+        timedEvents.forEach(event => {
+          const row = document.createElement("div");
+          row.className = "today-timed-row";
+
           const timeLabel = event.endTime
             ? event.startTime + " – " + event.endTime
             : event.startTime;
 
-          time =
-            '<span class="calendar-event-time">' +
-            escapeHTML(timeLabel) +
-            '</span>';
-        }
+          const coverageMatch = event.title.match(/^(.+?)\s+(?:to\s+)?cover(?:ing)?(?:\s+for)?\s+(.+)$/i);
+          let actionHTML = "";
 
-        item.innerHTML =
-          time +
-          '<span class="calendar-event-title">' +
-          escapeHTML(event.title) +
-          '</span>';
+          if (coverageMatch) {
+            actionHTML =
+              '<strong class="today-person">' + escapeHTML(coverageMatch[1].trim()) + '</strong>' +
+              '<span class="today-arrow">→</span>' +
+              '<span>' + escapeHTML(coverageMatch[2].trim()) + '</span>';
+          } else {
+            const parts = event.title.trim().split(/\s+/);
+            const firstName = parts.shift() || "";
+            actionHTML =
+              '<strong class="today-person">' + escapeHTML(firstName) + '</strong>' +
+              (parts.length ? '<span>' + escapeHTML(parts.join(" ")) + '</span>' : '');
+          }
 
-        todayContainer.appendChild(item);
+          row.innerHTML =
+            '<span class="today-time">' + escapeHTML(timeLabel) + '</span>' +
+            '<span class="today-action">' + actionHTML + '</span>';
 
-      });
+          list.appendChild(row);
+        });
 
+        todayContainer.appendChild(list);
+      }
     }
 
 
