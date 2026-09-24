@@ -3117,12 +3117,65 @@ upcomingDates.forEach(date => {
   /*
    * Events for this day
    */
-  const dayEvents =
-    upcomingEvents.filter(
+ const dayEvents =
+  upcomingEvents
+    .filter(
       event =>
         event.date === date
-    );
+    )
+    .sort((a, b) => {
 
+      // All-day events stay at the top
+      if (a.allDay && !b.allDay) return -1;
+      if (!a.allDay && b.allDay) return 1;
+
+      // If both are all-day events,
+      // keep their existing order
+      if (a.allDay && b.allDay) return 0;
+
+      function timeToMinutes(time) {
+        const match =
+          time.match(
+            /(\d+):(\d+)\s*(AM|PM)/i
+          );
+
+        if (!match) return 0;
+
+        let hours =
+          Number(match[1]);
+
+        const minutes =
+          Number(match[2]);
+
+        const period =
+          match[3].toUpperCase();
+
+        if (
+          period === "PM" &&
+          hours !== 12
+        ) {
+          hours += 12;
+        }
+
+        if (
+          period === "AM" &&
+          hours === 12
+        ) {
+          hours = 0;
+        }
+
+        return (
+          hours * 60 +
+          minutes
+        );
+      }
+
+      return (
+        timeToMinutes(a.startTime) -
+        timeToMinutes(b.startTime)
+      );
+
+    });
 
   if (dayEvents.length === 0) {
 
